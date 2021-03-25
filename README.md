@@ -1,0 +1,1 @@
+Schooly is an app for students to get school help.
