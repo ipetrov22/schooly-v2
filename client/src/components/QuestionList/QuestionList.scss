@@ -1,0 +1,14 @@
+.question-list {
+    padding: 100px 200px;
+    max-width: 1440px;
+    margin: auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+
+    @media (max-width: 1030px) {
+        padding: 50px 20px;
+    }
+}

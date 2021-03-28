@@ -5,6 +5,12 @@ const QuestionList = () => {
     return (
         <div className="question-list">
             <QuestionCard/>
+            <QuestionCard/>
+            <QuestionCard/>
+            <QuestionCard/>
+            <QuestionCard/>
+            <QuestionCard/>
+            <QuestionCard/>
         </div>
     );
 };
