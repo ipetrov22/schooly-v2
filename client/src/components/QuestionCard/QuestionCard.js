@@ -3,15 +3,16 @@ import './QuestionCard.scss';
 const QuestionCard = () => {
     return (
         <article className="question-card">
-            <span className="date">26 Mar 2021</span>
+            <section className="date-grade-container">
+                <span className="grade">10 Grade</span>
+                <span className="date">26 Mar 2021</span>
+            </section>
 
             <h2 className="subject">Math</h2>
 
-            <span className="grade">10 grade</span>
+            <p className="title">I need help with this and that and something else</p>
 
-            <p className="description">Lorem ipsum dolor amet, I don't remember the text ahead</p>
-
-            <button className="question-btn">Open</button>
+            <button className="open-btn">Open</button>
         </article>
     );
 };
