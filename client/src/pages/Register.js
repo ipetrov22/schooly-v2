@@ -1,13 +1,13 @@
 import Header from '../components/Header';
-import LoginForm from '../components/Forms/LoginForm';
+import RegisterForm from '../components/Forms/RegisterForm';
 
-const Login = () => {
+const Register = () => {
     return (
         <div className="login-page">
             <Header />
-            <LoginForm />
+            <RegisterForm />
         </div>
     );
 };
 
-export default Login;
+export default Register;

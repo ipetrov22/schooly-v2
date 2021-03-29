@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { MdLock } from 'react-icons/md';
-import './LoginForm.scss';
+import '../Form.scss';
 
 const LoginForm = () => {
     return (
-        <div className="login-wrapper">
-            <form className="login-form">
+        <div className="form-wrapper">
+            <form className="form">
                 <article className="icon-container">
                     <MdLock size={'35px'}
                         style={{ background: '#3f51b5', fill: '#fff', borderRadius: '50%', padding: '7px' }} />

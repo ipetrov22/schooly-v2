@@ -8,6 +8,7 @@ const App = () => {
       <Switch>
         <Route path="/" exact component={pages.Home} />
         <Route path="/login" component={pages.Login} />
+        <Route path="/register" component={pages.Register} />
       </Switch>
     </Router>
   );
