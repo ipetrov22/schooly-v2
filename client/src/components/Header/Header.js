@@ -5,7 +5,9 @@ const Header = () => {
     return (
         <header className="app-header-wrapper">
             <div className="header-container">
-                <button className="logo-title">Schooly</button>
+                <Link to="/">
+                    <button className="logo-title">Schooly</button>
+                </Link>
 
                 <section className="auth-buttons">
                     <Link to="/login">
