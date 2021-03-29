@@ -1,19 +1,24 @@
+import { Link } from 'react-router-dom';
 import './Header.scss';
 
 const Header = () => {
-    return(
+    return (
         <header className="app-header-wrapper">
             <div className="header-container">
                 <button className="logo-title">Schooly</button>
 
                 <section className="auth-buttons">
-                    <button className="auth-btn">
-                        Login
-                    </button>
+                    <Link to="/login">
+                        <button className="auth-btn">
+                            Login
+                        </button>
+                    </Link>
 
-                    <button className="auth-btn">
-                        Register
-                    </button>
+                    <Link to="/register">
+                        <button className="auth-btn">
+                            Register
+                        </button>
+                    </Link>
                 </section>
             </div>
         </header>
