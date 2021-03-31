@@ -1,9 +1,12 @@
 import QuestionDetails from '../components/QuestionDetails';
+import CommentSection from '../components/CommentSection';
 
 const Question = () => {
     return (
         <div className="question-page">
-            <QuestionDetails/>
+            <QuestionDetails />
+
+            <CommentSection />
         </div>
     );
 };
