@@ -14,7 +14,6 @@ const RegisterForm = () => {
                 <h2 className="title">Register</h2>
 
                 <input className="input-field"
-                    autoComplete="username"
                     type="text"
                     htmlFor="username"
                     name="username"
