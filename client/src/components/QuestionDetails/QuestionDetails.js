@@ -3,17 +3,15 @@ import './QuestionDetails.scss';
 const QuestionDetails = () => {
     return (
         <div className="question-details-wrapper">
-            <section className="subject-grade-container">
-                <span className="subject">Math</span>
-                <span className="grade">10 Grade</span>
-            </section>
+            <p className="subject-grade">
+                <span className="subject">Math</span> - <span className="grade">10 Grade</span>
+            </p>
 
             <h1 className="title">I need help with this that and something else</h1>
 
-            <section className="date-author-container">
-                <span className="date">26 Mar 2021</span>
-                <span className="author"> by user1234</span>
-            </section>
+            <p className="date-author">
+                <span className="date">26 Mar 2021</span> by <span className="author">user1234</span>
+            </p>
 
             <p className="description">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

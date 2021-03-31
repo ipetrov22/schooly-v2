@@ -2,4 +2,35 @@
     max-width: 940px;
     margin: auto;
     margin-top: 64px;
+    padding: 0 20px;
+
+    .subject-grade {
+        font-size: 0.8rem;
+        font-weight: 400;
+        line-height: 2.66;
+        letter-spacing: 0.08333em;
+        text-transform: uppercase;
+    }
+
+    .title {
+        font-size: 2.125rem;
+        font-weight: 400;
+        line-height: 1.235;
+        letter-spacing: 0.00735em;
+    }
+
+    .date-author {
+        font-size: 0.8rem;
+        font-weight: 400;
+        line-height: 1.66;
+        letter-spacing: 0.03333em;
+    }
+
+    .description {
+        margin-top: 10px;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: 0.00938em;
+    }
 }
