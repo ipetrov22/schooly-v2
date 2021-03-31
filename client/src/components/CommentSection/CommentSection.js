@@ -1,3 +1,4 @@
+import CreateComment from './CreateComment';
 import './CommentSection.scss';
 
 const CommentSection = () => {
@@ -6,10 +7,7 @@ const CommentSection = () => {
         <div className="comment-section-wrapper">
             <h2 className="title">Comments</h2>
 
-            <textarea
-                className="comment-input"
-                placeholder="Comment..."
-            />
+            <CreateComment />
         </div>
     );
 };
