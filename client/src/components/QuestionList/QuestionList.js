@@ -1,4 +1,4 @@
-import QuestionCard from '../QuestionCard/QuestionCard';
+import QuestionCard from './QuestionCard';
 import './QuestionList.scss';
 
 const QuestionList = () => {
