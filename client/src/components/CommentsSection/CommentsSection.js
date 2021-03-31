@@ -1,5 +1,6 @@
 import CreateComment from './CreateComment';
-import './CommentSection.scss';
+import CommentsList from './CommentsList';
+import './CommentsSection.scss';
 
 const CommentSection = () => {
 
@@ -8,6 +9,8 @@ const CommentSection = () => {
             <h2 className="title">Comments</h2>
 
             <CreateComment />
+
+            <CommentsList/>
         </div>
     );
 };
