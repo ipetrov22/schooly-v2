@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './QuestionCard.scss';
 
 const QuestionCard = () => {
@@ -12,7 +13,9 @@ const QuestionCard = () => {
 
             <p className="title">I need help with this and that and something else</p>
 
-            <button className="open-btn">Open</button>
+            <Link to="/question">
+                <button className="open-btn">Open</button>
+            </Link>
         </article>
     );
 };
