@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdLock } from 'react-icons/md';
 import validators from '../../../helpers/validators';
+import { connect } from 'react-redux';
+import { register } from '../../../actions/userActions';
 import '../Form.scss';
 
-const RegisterForm = () => {
+const RegisterForm = ({ register }) => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -35,10 +37,15 @@ const RegisterForm = () => {
         setFormErrors(newFormErrors);
     };
 
-    const onSubmitForm = (e) => {
+    const onSubmitForm = async (e) => {
         e.preventDefault();
 
-        console.log(formData);
+        if (formErrors.username === '' &&
+            formErrors.email === '' &&
+            formErrors.password === '' &&
+            formErrors.repeatPassword === '') {
+            await register(formData);
+        }
     };
 
     return (
@@ -110,4 +117,8 @@ const RegisterForm = () => {
     );
 };
 
-export default RegisterForm;
+const mapDispatchToProps = {
+    register
+};
+
+export default connect(null, mapDispatchToProps)(RegisterForm);
