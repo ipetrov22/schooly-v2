@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdLock } from 'react-icons/md';
+import validators from '../../../helpers/validators';
 import '../Form.scss';
 
 const RegisterForm = () => {
@@ -11,6 +12,13 @@ const RegisterForm = () => {
         repeatPassword: ''
     });
 
+    const [formErrors, setFormErrors] = useState({
+        username: null,
+        email: null,
+        password: null,
+        repeatPassword: null
+    });
+
     const onFormChange = (e) => {
         const fieldName = e.target.name;
         const fieldValue = e.target.value.trim();
@@ -19,6 +27,11 @@ const RegisterForm = () => {
         newFormData[fieldName] = fieldValue;
 
         setFormData(newFormData);
+
+        const newFormErrors = { ...formErrors };
+        newFormErrors[fieldName] = validators[fieldName](fieldValue);
+
+        setFormErrors(newFormErrors);
     }
 
     return (
