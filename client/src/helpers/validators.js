@@ -12,7 +12,7 @@ const usernameRegex = /^[a-z0-9._-]{3,20}$/;
 
 const username = (username) => {
     if (!username.match(usernameRegex)) {
-        return `Username length should be between 3 and 20 and contain no special characters.`;
+        return `Username should be between 3 and 20 characters long and contain no special symbols.`;
     }
 
     return '';
@@ -22,7 +22,7 @@ const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,30}$/;
 
 const password = (password) => {
     if (!password.match(passwordRegex)) {
-        return 'Password should be between 6 and 30 characters and consist of numbers and latin letters.';
+        return 'Password should be between 6 and 30 characters long and consist of numbers and latin letters.';
     }
 
     return '';
@@ -30,7 +30,7 @@ const password = (password) => {
 
 const repeatPassword = (repeatPassword, password) => {
     if (repeatPassword !== password) {
-        return 'Password should match.';
+        return 'Passwords should match.';
     }
 
     return '';

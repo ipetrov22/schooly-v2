@@ -45,6 +45,7 @@ const RegisterForm = () => {
 
                 <h2 className="title">Register</h2>
 
+                <p className="error">{formErrors.username || ''}</p>
                 <input className={`input-field ${formErrors.username ? 'invalid'
                     : formErrors.username === '' ? 'valid' : ''}`}
                     type="text"
@@ -55,6 +56,7 @@ const RegisterForm = () => {
                     onChange={onFormChange}
                 />
 
+                <p className="error">{formErrors.email || ''}</p>
                 <input className={`input-field ${formErrors.email ? 'invalid'
                     : formErrors.email === '' ? 'valid' : ''}`}
                     autoComplete="email"
@@ -66,6 +68,7 @@ const RegisterForm = () => {
                     onChange={onFormChange}
                 />
 
+                <p className="error">{formErrors.password || ''}</p>
                 <input className={`input-field ${formErrors.password ? 'invalid'
                     : formErrors.password === '' ? 'valid' : ''}`}
                     type="password"
@@ -76,6 +79,7 @@ const RegisterForm = () => {
                     onChange={onFormChange}
                 />
 
+                <p className="error">{formErrors.repeatPassword || ''}</p>
                 <input className={`input-field ${formErrors.repeatPassword ? 'invalid'
                     : formErrors.repeatPassword === '' ? 'valid' : ''}`}
                     type="password"
