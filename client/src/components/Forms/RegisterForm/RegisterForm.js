@@ -25,12 +25,13 @@ const RegisterForm = () => {
 
         const newFormData = { ...formData };
         newFormData[fieldName] = fieldValue;
-
         setFormData(newFormData);
 
         const newFormErrors = { ...formErrors };
-        newFormErrors[fieldName] = validators[fieldName](fieldValue);
-
+        newFormErrors[fieldName] = validators[fieldName](fieldValue, formData.password);
+        if (fieldName === 'password' && formErrors.repeatPassword !== null) {
+            newFormErrors.repeatPassword = validators.repeatPassword(formData.repeatPassword, fieldValue);
+        }
         setFormErrors(newFormErrors);
     }
 
@@ -44,7 +45,8 @@ const RegisterForm = () => {
 
                 <h2 className="title">Register</h2>
 
-                <input className="input-field"
+                <input className={`input-field ${formErrors.username ? 'invalid'
+                    : formErrors.username === '' ? 'valid' : ''}`}
                     type="text"
                     htmlFor="username"
                     name="username"
@@ -53,7 +55,8 @@ const RegisterForm = () => {
                     onChange={onFormChange}
                 />
 
-                <input className="input-field"
+                <input className={`input-field ${formErrors.email ? 'invalid'
+                    : formErrors.email === '' ? 'valid' : ''}`}
                     autoComplete="email"
                     type="email"
                     htmlFor="email"
@@ -63,7 +66,8 @@ const RegisterForm = () => {
                     onChange={onFormChange}
                 />
 
-                <input className="input-field"
+                <input className={`input-field ${formErrors.password ? 'invalid'
+                    : formErrors.password === '' ? 'valid' : ''}`}
                     type="password"
                     htmlFor="password"
                     name="password"
@@ -72,7 +76,8 @@ const RegisterForm = () => {
                     onChange={onFormChange}
                 />
 
-                <input className="input-field"
+                <input className={`input-field ${formErrors.repeatPassword ? 'invalid'
+                    : formErrors.repeatPassword === '' ? 'valid' : ''}`}
                     type="password"
                     htmlFor="password"
                     name="repeatPassword"
