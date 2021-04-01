@@ -1,8 +1,26 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { MdLock } from 'react-icons/md';
 import '../Form.scss';
 
 const RegisterForm = () => {
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: '',
+        repeatPassword: ''
+    });
+
+    const onFormChange = (e) => {
+        const fieldName = e.target.name;
+        const fieldValue = e.target.value.trim();
+
+        const newFormData = { ...formData };
+        newFormData[fieldName] = fieldValue;
+
+        setFormData(newFormData);
+    }
+
     return (
         <div className="form-wrapper">
             <form className="form">
@@ -19,6 +37,7 @@ const RegisterForm = () => {
                     name="username"
                     placeholder="Username"
                     required
+                    onChange={onFormChange}
                 />
 
                 <input className="input-field"
@@ -28,14 +47,25 @@ const RegisterForm = () => {
                     name="email"
                     placeholder="Email"
                     required
+                    onChange={onFormChange}
                 />
 
                 <input className="input-field"
                     type="password"
                     htmlFor="password"
-                    наме="password"
+                    name="password"
                     placeholder="Password"
                     required
+                    onChange={onFormChange}
+                />
+
+                <input className="input-field"
+                    type="password"
+                    htmlFor="password"
+                    name="repeatPassword"
+                    placeholder="Repeat Password"
+                    required
+                    onChange={onFormChange}
                 />
 
                 <button className="submit-btn" type="submit">
