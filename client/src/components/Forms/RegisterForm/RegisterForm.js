@@ -33,11 +33,17 @@ const RegisterForm = () => {
             newFormErrors.repeatPassword = validators.repeatPassword(formData.repeatPassword, fieldValue);
         }
         setFormErrors(newFormErrors);
-    }
+    };
+
+    const onSubmitForm = (e) => {
+        e.preventDefault();
+
+        console.log(formData);
+    };
 
     return (
         <div className="form-wrapper">
-            <form className="form">
+            <form className="form" onSubmit={onSubmitForm}>
                 <article className="icon-container">
                     <MdLock size={'35px'}
                         style={{ background: '#3f51b5', fill: '#fff', borderRadius: '50%', padding: '7px' }} />
