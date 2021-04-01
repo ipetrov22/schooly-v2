@@ -5,7 +5,7 @@ const createUser = async ({ username, email, password }) => {
     const user = await UserModel.findOne({ username });
 
     if (user) {
-        throw 'Username is taken!';
+        throw { message: 'Username is taken!' };
     }
 
     return admin.auth().createUser({ email, password })
