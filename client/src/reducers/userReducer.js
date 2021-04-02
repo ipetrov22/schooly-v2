@@ -12,7 +12,10 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case USER_INIT:
-            return initialState;
+            return {
+                ...initialState,
+                firebaseUser: null
+            };
         case LOGIN:
             return {
                 ...state,
