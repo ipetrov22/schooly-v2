@@ -4,7 +4,7 @@ import {
 } from '../actionTypes/userTypes';
 
 const initialState = {
-    firebaseUser: null,
+    firebaseUser: JSON.parse(localStorage.getItem('isAuth')),
     username: '',
     _id: '',
 };

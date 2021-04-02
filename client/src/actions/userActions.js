@@ -21,9 +21,11 @@ export const loginSuccess = (userData) => ({
 export const verifyAuth = () => (dispatch) => {
     firebase.auth().onAuthStateChanged(async (firebaseUser) => {
         if (firebaseUser) {
+            localStorage.setItem('isAuth', true);
             const { username, _id } = (await firebaseUser.getIdTokenResult(true)).claims;
             dispatch(loginSuccess({ firebaseUser, username, _id }));
         } else {
+            localStorage.removeItem('isAuth');
             dispatch(init());
         }
     });
