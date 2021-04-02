@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { MdLock } from 'react-icons/md';
 import validators from '../../../helpers/validators';
 import { connect } from 'react-redux';
@@ -7,6 +7,8 @@ import { register } from '../../../actions/userActions';
 import '../Form.scss';
 
 const RegisterForm = ({ register }) => {
+    const history = useHistory();
+
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -44,7 +46,12 @@ const RegisterForm = ({ register }) => {
             formErrors.email === '' &&
             formErrors.password === '' &&
             formErrors.repeatPassword === '') {
-            await register(formData);
+            try {
+                await register(formData);
+                history.push('/');
+            } catch (error) {
+                alert(error);
+            }
         }
     };
 

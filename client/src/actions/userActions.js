@@ -23,7 +23,7 @@ export const register = ({ username, email, password }) => async (dispatch) => {
 
         dispatch(login({ email, password }));
     } catch (error) {
-        alert(error);
+        throw error;
     }
 
 };
@@ -36,6 +36,6 @@ export const login = ({ email, password }) => async (dispatch) => {
         
         dispatch(loginSuccess({ firebaseUser, username, _id }));
     } catch (error) {
-        alert(error);
+        throw error;
     }
 };
