@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({ firebaseUser, component: Component, ...rest }) => (
     <Route {...rest} render={props => (firebaseUser ? <Component {...props} /> :
-        <Redirect to="/" />)} />
+        <Redirect to="/login" />)} />
 );
 
 const mapStateToProps = (state) => ({

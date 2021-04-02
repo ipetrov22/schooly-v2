@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import pages from './pages';
 import PrivateRoute from './hoc/PrivateRoute';
+import PublicRoute from './hoc/PublicRoute';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { verifyAuth } from './actions/userActions';
@@ -18,9 +19,9 @@ const App = ({ verifyAuth }) => {
         <Route path={['/', '/login', '/register', '/question']}>
           <MainLayout>
             <Switch>
-              <Route path="/" exact component={pages.Home} />
-              <Route path="/login" component={pages.Login} />
-              <Route path="/register" component={pages.Register} />
+              <PublicRoute restricted={false} path="/" exact component={pages.Home} />
+              <PublicRoute restricted={true} path="/login" component={pages.Login} />
+              <PublicRoute restricted={true} path="/register" component={pages.Register} />
               <PrivateRoute path="/question" component={pages.Question} />
             </Switch>
           </MainLayout>
