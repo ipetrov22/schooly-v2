@@ -19,7 +19,7 @@ const Header = ({ firebaseUser }) => {
 
     return (
         <header className="app-header-wrapper">
-            <Drawer open={open} />
+            <Drawer open={open} setOpen={setOpen} />
             {open && <Backdrop setOpen={setOpen} />}
 
             <div className="header-container">

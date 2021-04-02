@@ -1,6 +1,6 @@
 import {
     LOGIN,
-    INIT
+    USER_INIT
 } from '../actionTypes/userTypes';
 
 import {
@@ -10,7 +10,7 @@ import {
 import firebase from '../utils/firebase';
 
 export const init = () => ({
-    type: INIT
+    type: USER_INIT
 });
 
 export const loginSuccess = (userData) => ({
@@ -46,10 +46,22 @@ export const register = ({ username, email, password }) => async (dispatch) => {
 
 };
 
-export const login = ({ email, password }) => async () => {
+export const login = ({ email, password }) => async (dispatch) => {
     try {
-        await firebase.auth().signInWithEmailAndPassword(email, password);
+        const response = await firebase.auth().signInWithEmailAndPassword(email, password);
+        const firebaseUser = response.user;
+        const { username, _id } = (await firebaseUser.getIdTokenResult(true)).claims;
+        dispatch(loginSuccess({ firebaseUser, username, _id }));
     } catch (error) {
         throw error;
+    }
+};
+
+export const logout = () => async (dispatch) => {
+    try {
+        await firebase.auth().signOut();
+        dispatch(init());
+    } catch (error) {
+        alert(error);
     }
 };

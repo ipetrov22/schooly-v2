@@ -1,5 +1,5 @@
 import {
-    INIT,
+    USER_INIT,
     LOGIN
 } from '../actionTypes/userTypes';
 
@@ -11,7 +11,7 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case INIT:
+        case USER_INIT:
             return initialState;
         case LOGIN:
             return {
