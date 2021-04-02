@@ -1,5 +1,6 @@
 import {
-    LOGIN
+    LOGIN,
+    INIT
 } from '../actionTypes/userTypes';
 
 import {
@@ -8,10 +9,25 @@ import {
 
 import firebase from '../utils/firebase';
 
+export const init = () => ({
+    type: INIT
+});
+
 export const loginSuccess = (userData) => ({
     type: LOGIN,
     payload: userData
 });
+
+export const verifyAuth = () => (dispatch) => {
+    firebase.auth().onAuthStateChanged(async (firebaseUser) => {
+        if (firebaseUser) {
+            const { username, _id } = (await firebaseUser.getIdTokenResult(true)).claims;
+            dispatch(loginSuccess({ firebaseUser, username, _id }));
+        } else {
+            dispatch(init());
+        }
+    });
+};
 
 export const register = ({ username, email, password }) => async (dispatch) => {
     try {
@@ -32,8 +48,8 @@ export const login = ({ email, password }) => async (dispatch) => {
     try {
         const response = await firebase.auth().signInWithEmailAndPassword(email, password);
         const firebaseUser = response.user;
-        const {username, _id} = (await firebaseUser.getIdTokenResult()).claims;
-        
+        const { username, _id } = (await firebaseUser.getIdTokenResult()).claims;
+
         dispatch(loginSuccess({ firebaseUser, username, _id }));
     } catch (error) {
         throw error;

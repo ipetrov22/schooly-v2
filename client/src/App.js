@@ -1,9 +1,16 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import pages from './pages';
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { verifyAuth } from './actions/userActions';
 import './App.scss';
 
-const App = () => {
+const App = ({ verifyAuth }) => {
+  useEffect(() => {
+    verifyAuth();
+  }, [verifyAuth]);
+
   return (
     <Router>
       <Switch>
@@ -22,4 +29,8 @@ const App = () => {
   );
 };
 
-export default App;
+const mapDispatchToProps = {
+  verifyAuth
+};
+
+export default connect(null, mapDispatchToProps)(App);
