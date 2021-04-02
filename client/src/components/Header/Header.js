@@ -3,17 +3,25 @@ import { MdMenu } from 'react-icons/md';
 import { connect } from 'react-redux';
 import Drawer from './Drawer';
 import Backdrop from './Backdrop';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Header.scss';
 
 const Header = ({ firebaseUser }) => {
     const [open, setOpen] = useState(false);
 
+    useEffect(() => {
+        if (open){
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [open]);
+
     return (
         <header className="app-header-wrapper">
             <Drawer open={open} />
             {open && <Backdrop setOpen={setOpen} />}
-            
+
             <div className="header-container">
                 <Link to="/">
                     <button className="logo-title">Schooly</button>
