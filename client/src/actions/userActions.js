@@ -44,13 +44,9 @@ export const register = ({ username, email, password }) => async (dispatch) => {
 
 };
 
-export const login = ({ email, password }) => async (dispatch) => {
+export const login = ({ email, password }) => async () => {
     try {
-        const response = await firebase.auth().signInWithEmailAndPassword(email, password);
-        const firebaseUser = response.user;
-        const { username, _id } = (await firebaseUser.getIdTokenResult()).claims;
-
-        dispatch(loginSuccess({ firebaseUser, username, _id }));
+        await firebase.auth().signInWithEmailAndPassword(email, password);
     } catch (error) {
         throw error;
     }
