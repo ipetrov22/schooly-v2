@@ -1,0 +1,113 @@
+.question-form-wrapper {
+    max-width: 1440px;
+    margin: auto;
+    margin-top: 80px;
+
+    .form {
+        max-width: 396px;
+        margin: auto;
+
+        .icon-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .title {
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 400;
+            line-height: 1.334;
+            letter-spacing: 0em;
+        }
+
+        .form-control {
+            width: 360px;
+            border: 0;
+            margin: 0;
+            margin-top: 16px;
+            margin-bottom: 8px;
+            display: inline-flex;
+            padding: 0;
+            position: relative;
+            min-width: 0;
+            flex-direction: column;
+            vertical-align: top;
+
+            .input-label {
+                padding-left: 5px;
+                transition: color 200ms cubic-bezier(0, 0, 0.2, 1) 0ms, transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+
+                position: absolute;
+                top: 0;
+                left: 0;
+                //transform: translate(0, 24px) scale(1);
+
+                color: rgba(0, 0, 0, 0.54);
+                padding: 0;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1;
+                letter-spacing: 0.00938em;
+            }
+
+            .input-field-container {
+                margin-top: 16px;
+                position: relative;
+                width: 100%;
+                color: rgba(0, 0, 0, 0.87);
+                cursor: text;
+                display: inline-flex;
+
+                font-size: 1rem;
+                box-sizing: border-box;
+                align-items: center;
+                font-weight: 400;
+                line-height: 1.1876em;
+                letter-spacing: 0.00938em;
+
+                &::before {
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    content: "\00a0";
+                    position: absolute;
+                    transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+                    pointer-events: none;
+                }
+
+                &::after {
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    content: "";
+                    position: absolute;
+                    transform: scaleX(0);
+                    transition: transform 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+                    border-bottom: 2px solid #3f51b5;
+                    pointer-events: none;
+                }
+
+                .input-field {
+                    outline: none;
+                    font: inherit;
+                    color: currentColor;
+                    width: 100%;
+                    border: 0;
+                    height: 1.1876em;
+                    margin: 0;
+                    display: block;
+                    padding: 6px 0 7px;
+                    min-width: 0;
+                    background: none;
+                    box-sizing: content-box;
+                    animation-name: mui-auto-fill-cancel;
+                    letter-spacing: inherit;
+                    animation-duration: 10ms;
+                    -webkit-tap-highlight-color: transparent;
+                }
+            }
+        }
+    }
+}
