@@ -12,7 +12,7 @@ const AskForm = () => {
                 <h2 className="title">Ask a Question</h2>
 
                 <div className="form-control">
-                    <input className="input-field" htmlFor="title" name="title" />
+                    <input className="input-field" htmlFor="title" name="title" placeholder="Title" />
                     <label className="input-label" htmlFor="title">Title</label>
                 </div>
             </form>
