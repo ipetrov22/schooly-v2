@@ -5,7 +5,7 @@ const CommentCard = () => {
     return (
         <article className="comment-card">
             <section className="icon-container">
-                <FaUserCircle size={25} />
+                <FaUserCircle size="25px" />
             </section>
 
             <section className="content-container">

@@ -17,7 +17,7 @@ const Drawer = ({ open, setOpen, logout }) => {
             <section className="drawer-section">
                 <Link to="/">
                     <button className="drawer-link-btn">
-                        <FaUserAlt size={20} />
+                        <FaUserAlt size="20px" />
                         <span className="link-name">Profile</span>
                     </button>
                 </Link>
@@ -25,7 +25,7 @@ const Drawer = ({ open, setOpen, logout }) => {
 
             <section className="drawer-section">
                 <button className="drawer-link-btn" onClick={onLogout}>
-                    <IoMdExit size={23} />
+                    <IoMdExit size="20px"/>
                     <span className="link-name">Logout</span>
                 </button>
             </section>

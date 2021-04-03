@@ -16,13 +16,14 @@ const App = ({ verifyAuth }) => {
   return (
     <Router>
       <Switch>
-        <Route path={['/', '/login', '/register', '/question']} exact>
+        <Route path={['/', '/login', '/register', '/question', '/ask']} exact>
           <MainLayout>
             <Switch>
               <PublicRoute restricted={false} path="/" exact component={pages.Home} />
               <PublicRoute restricted={true} path="/login" component={pages.Login} />
               <PublicRoute restricted={true} path="/register" component={pages.Register} />
               <PrivateRoute path="/question" component={pages.Question} />
+              <PrivateRoute path="/ask" component={pages.Ask} />
             </Switch>
           </MainLayout>
         </Route>

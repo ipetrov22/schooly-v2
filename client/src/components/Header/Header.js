@@ -29,7 +29,7 @@ const Header = ({ firebaseUser }) => {
 
                 {firebaseUser ?
                     <button className="menu-btn" onClick={() => setOpen(!open)}>
-                        <MdMenu size={30} fill={'#fff'} />
+                        <MdMenu size="30px" fill={'#fff'} />
                     </button>
 
                     : <section className="auth-buttons">
