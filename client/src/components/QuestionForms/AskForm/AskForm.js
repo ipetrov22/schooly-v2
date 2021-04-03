@@ -15,6 +15,12 @@ const AskForm = () => {
                     <input className="input-field" htmlFor="title" name="title" placeholder="Title" />
                     <label className="input-label" htmlFor="title">Title</label>
                 </div>
+
+                <div className="form-control">
+                    <select>
+                        
+                    </select>
+                </div>
             </form>
         </div>
     );
