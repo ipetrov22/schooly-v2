@@ -50,6 +50,10 @@ const AskForm = () => {
                     <textarea className="input-field input-area" htmlFor="description" name="description" placeholder="Description" />
                     <label className="input-label" htmlFor="description">Description</label>
                 </div>
+
+                <button className="submit-btn" type="submit">
+                    Post your question
+                </button>
             </form>
         </div>
     );
