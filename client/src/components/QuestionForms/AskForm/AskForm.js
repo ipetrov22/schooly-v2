@@ -1,4 +1,5 @@
 import { MdSchool } from 'react-icons/md';
+import subjects from '../../../dictionaries/subjects';
 import './AskForm.scss';
 
 const AskForm = () => {
@@ -17,8 +18,11 @@ const AskForm = () => {
                 </div>
 
                 <div className="form-control">
-                    <select>
-                        
+                    <select name="subject">
+                        <option value="">Select subject</option>
+                        {
+                            Object.keys(subjects).map(key => <option value={key}>{subjects[key]}</option>)
+                        }
                     </select>
                 </div>
             </form>
