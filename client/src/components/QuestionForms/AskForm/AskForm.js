@@ -12,11 +12,8 @@ const AskForm = () => {
                 <h2 className="title">Ask a Question</h2>
 
                 <div className="form-control">
+                    <input className="input-field" htmlFor="title" name="title" />
                     <label className="input-label" htmlFor="title">Title</label>
-
-                    <div className="input-field-container">
-                        <input className="input-field" htmlFor="title" name="title" />
-                    </div>
                 </div>
             </form>
         </div>
