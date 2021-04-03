@@ -26,7 +26,7 @@
             border: 0;
             margin: auto;
             margin-top: 16px;
-            margin-bottom: 8px;
+            margin-bottom: 36px;
             display: flex;
             padding: 0;
             position: relative;
@@ -50,6 +50,7 @@
             }
 
             .input-field {
+                text-align: left;
                 outline: none;
                 font: inherit;
                 color: currentColor;
@@ -58,7 +59,7 @@
                 height: 1.1876em;
                 margin: 0;
                 display: block;
-                padding: 6px 0 7px;
+                padding: 8px 0 8px;
                 min-width: 0;
                 background: none;
                 box-sizing: content-box;
@@ -67,6 +68,7 @@
                 animation-duration: 10ms;
                 -webkit-tap-highlight-color: transparent;
                 border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+                color: currentColor;
 
                 &:-ms-input-placeholder {
                     opacity: 0;
@@ -93,6 +95,11 @@
 
             .input-field:not(:placeholder-shown) + .input-label {
                 transform: translate(0, -15px) scale(1);
+            }
+
+            .input-area {
+                resize: vertical;
+                min-height: 20px;
             }
         }
     }
