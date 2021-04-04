@@ -1,6 +1,7 @@
 import { MdSchool } from 'react-icons/md';
 import subjects from '../../../dictionaries/subjects';
 import grades from '../../../dictionaries/grades';
+import questionValidators from '../../../helpers/questionValidators';
 import { useState } from 'react';
 import './AskForm.scss';
 
@@ -12,6 +13,13 @@ const AskForm = () => {
         description: ''
     });
 
+    const [formErrors, setFormErrors] = useState({
+        title: null,
+        subject: null,
+        grade: null,
+        description: null
+    });
+
     const onFormChange = (e) => {
         const fieldName = e.target.name;
         const fieldValue = e.target.value.trim();
@@ -19,6 +27,10 @@ const AskForm = () => {
         const newFormData = { ...formData };
         newFormData[fieldName] = fieldValue;
         setFormData(newFormData);
+
+        const newFormErrors = { ...formErrors };
+        newFormErrors[fieldName] = questionValidators[fieldName](fieldValue);
+        setFormErrors(newFormErrors);
     };
 
     const onFormSubmit = (e) => {
@@ -28,7 +40,7 @@ const AskForm = () => {
             && formData.subject !== ''
             && formData.grade !== ''
             && formData.grade !== '') {
-                console.log(formData)
+            console.log(formData)
         }
     };
 
