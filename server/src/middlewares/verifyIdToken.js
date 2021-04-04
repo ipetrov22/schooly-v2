@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
                 next();
             })
             .catch((error) => {
-                res.status(401).json({ error: 'Unauthorized' });
+                res.status(401).json({ error: { message: 'Unauthorized' } });
             });
     } else {
         res.status(401).json({ error: 'Unauthorized' });
