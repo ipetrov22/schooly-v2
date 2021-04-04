@@ -2,10 +2,15 @@ import { MdSchool } from 'react-icons/md';
 import subjects from '../../../dictionaries/subjects';
 import grades from '../../../dictionaries/grades';
 import questionValidators from '../../../helpers/questionValidators';
+import { connect } from 'react-redux';
+import { createQuestion } from '../../../actions/questionActions';
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import '../QuestionForm.scss';
 
-const AskForm = () => {
+const AskForm = ({ firebaseUser, createQuestion }) => {
+    const history = useHistory();
+
     const [formData, setFormData] = useState({
         title: '',
         subject: '',
@@ -33,14 +38,20 @@ const AskForm = () => {
         setFormErrors(newFormErrors);
     };
 
-    const onFormSubmit = (e) => {
+    const onFormSubmit = async (e) => {
         e.preventDefault();
 
         if (formErrors.title === ''
             && formErrors.subject === ''
             && formErrors.grade === ''
-            && formErrors.description === '') {
-            console.log(formData)
+            && formErrors.description === '' && firebaseUser) {
+
+            firebaseUser.getIdToken()
+                .then(async (idToken) => {
+                    await createQuestion(formData, idToken);
+                    history.push('/');
+                })
+                .catch((err) => alert(err));
         }
     };
 
@@ -144,4 +155,12 @@ const AskForm = () => {
     );
 };
 
-export default AskForm;
+const mapStateToProps = (state) => ({
+    firebaseUser: state.user.firebaseUser
+});
+
+const mapDispatchToProps = {
+    createQuestion
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AskForm);
