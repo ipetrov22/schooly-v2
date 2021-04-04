@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { MdLock } from 'react-icons/md';
-import validators from '../../../helpers/validators';
+import userValidators from '../../../helpers/userValidators';
 import { connect } from 'react-redux';
 import { register } from '../../../actions/userActions';
 import '../Form.scss';
@@ -32,9 +32,9 @@ const RegisterForm = ({ register }) => {
         setFormData(newFormData);
 
         const newFormErrors = { ...formErrors };
-        newFormErrors[fieldName] = validators[fieldName](fieldValue, formData.password);
+        newFormErrors[fieldName] = userValidators[fieldName](fieldValue, formData.password);
         if (fieldName === 'password' && formErrors.repeatPassword !== null) {
-            newFormErrors.repeatPassword = validators.repeatPassword(formData.repeatPassword, fieldValue);
+            newFormErrors.repeatPassword = userValidators.repeatPassword(formData.repeatPassword, fieldValue);
         }
         setFormErrors(newFormErrors);
     };

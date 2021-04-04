@@ -36,11 +36,11 @@ const repeatPassword = (repeatPassword, password) => {
     return '';
 };
 
-const validators = {
+const userValidators = {
     email,
     username,
     password,
     repeatPassword
 };
 
-export default validators;
+export default userValidators;
