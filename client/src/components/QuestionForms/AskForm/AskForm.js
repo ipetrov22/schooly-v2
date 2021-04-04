@@ -3,7 +3,7 @@ import subjects from '../../../dictionaries/subjects';
 import grades from '../../../dictionaries/grades';
 import questionValidators from '../../../helpers/questionValidators';
 import { useState } from 'react';
-import './AskForm.scss';
+import '../QuestionForm.scss';
 
 const AskForm = () => {
     const [formData, setFormData] = useState({
@@ -36,10 +36,10 @@ const AskForm = () => {
     const onFormSubmit = (e) => {
         e.preventDefault();
 
-        if (formData.title !== ''
-            && formData.subject !== ''
-            && formData.grade !== ''
-            && formData.grade !== '') {
+        if (formErrors.title === ''
+            && formErrors.subject === ''
+            && formErrors.grade === ''
+            && formErrors.description === '') {
             console.log(formData)
         }
     };
@@ -54,12 +54,28 @@ const AskForm = () => {
                 <h2 className="title">Ask a Question</h2>
 
                 <div className="form-control">
-                    <input className="input-field" htmlFor="title" name="title" placeholder="Title" onChange={onFormChange} />
-                    <label className="input-label" htmlFor="title">Title</label>
+                    <input
+                        className={`input-field ${formErrors.title ? 'invalid-field' : ''}`}
+                        htmlFor="title"
+                        name="title"
+                        placeholder="Title"
+                        onChange={onFormChange}
+                    />
+                    <label className={`input-label ${formErrors.title ? 'invalid-label' : ''}`}
+                        htmlFor="title"
+                    >
+                        Title
+                    </label>
+                    <p className="error-text">{formErrors.title}</p>
                 </div>
 
                 <div className="form-control">
-                    <select name="subject" className="input-field" placeholder="Subject" onChange={onFormChange} >
+                    <select
+                        name="subject"
+                        className={`input-field ${formErrors.subject ? 'invalid-field' : ''}`}
+                        placeholder="Subject"
+                        onChange={onFormChange}
+                    >
                         <option className="option-field" defaultValue="">Select a subject</option>
                         {
                             Object.keys(subjects)
@@ -69,11 +85,22 @@ const AskForm = () => {
                         }
                     </select>
 
-                    <label className="input-label" htmlFor="subject">Subject</label>
+                    <label
+                        className={`input-label ${formErrors.subject ? 'invalid-label' : ''}`}
+                        htmlFor="subject"
+                    >
+                        Subject
+                    </label>
+                    <p className="error-text">{formErrors.subject}</p>
                 </div>
 
                 <div className="form-control">
-                    <select name="grade" className="input-field" placeholder="Grade" onChange={onFormChange} >
+                    <select
+                        name="grade"
+                        className={`input-field ${formErrors.grade ? 'invalid-field' : ''}`}
+                        placeholder="Grade"
+                        onChange={onFormChange}
+                    >
                         <option className="option-field" defaultValue="">Select grade</option>
                         {
                             Object.keys(grades)
@@ -83,18 +110,30 @@ const AskForm = () => {
                         }
                     </select>
 
-                    <label className="input-label" htmlFor="grade">Grade</label>
+                    <label
+                        className={`input-label ${formErrors.grade ? 'invalid-label' : ''}`}
+                        htmlFor="grade"
+                    >
+                        Grade
+                    </label>
+                    <p className="error-text">{formErrors.grade}</p>
                 </div>
 
                 <div className="form-control">
                     <textarea
-                        className="input-field input-area"
+                        className={`input-field input-area ${formErrors.description ? 'invalid-field' : ''}`}
                         htmlFor="description"
                         name="description"
                         placeholder="Description"
                         onChange={onFormChange}
                     />
-                    <label className="input-label" htmlFor="description">Description</label>
+                    <label
+                        className={`input-label ${formErrors.description ? 'invalid-label' : ''}`}
+                        htmlFor="description"
+                    >
+                        Description
+                    </label>
+                    <p className="error-text">{formErrors.description}</p>
                 </div>
 
                 <button className="submit-btn" type="submit">
