@@ -6,7 +6,7 @@ const { questionService } = require('../services');
 
 router.post('/', verifyIdToken, async (req, res) => {
     try {
-        const response = await questionService.create();
+        const response = await questionService.create(req.body, res._id);
         return res.json(response);
     } catch (error) {
         return res.status(400).json({ error });

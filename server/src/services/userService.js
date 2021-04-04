@@ -1,22 +1,22 @@
 const admin = require('../config/firebase');
 const UserModel = require('../models/UserModel');
-const validators = require('../helpers/validators');
+const validators = require('../helpers/userValidators');
 
 const createUser = async ({ username, email, password }) => {
 
     const usernameValidationResult = validators.username(username);
     if (usernameValidationResult) {
-        throw usernameValidationResult;
+        throw { message: usernameValidationResult };
     }
 
     const emailValidationResult = validators.email(email);
     if (emailValidationResult) {
-        throw emailValidationResult;
+        throw { message: emailValidationResult };
     }
 
     const passwordValidationResult = validators.password(password);
     if (passwordValidationResult) {
-        throw passwordValidationResult;
+        throw { message: passwordValidationResult };
     }
 
     const user = await UserModel.findOne({ username });
