@@ -24,7 +24,7 @@ const create = async ({ title, subject, grade, description }, userId) => {
     }
 
     try {
-        const question = new QuestionModel({ title, subject, grade, description });
+        const question = new QuestionModel({ title, subject, grade, description, author: userId });
         await question.save();
 
         await UserModel.findByIdAndUpdate(userId, {

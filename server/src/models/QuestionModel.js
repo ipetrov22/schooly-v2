@@ -17,10 +17,11 @@ const QuestionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    author: [{
+    author: {
         type: 'ObjectId',
-        ref: 'User'
-    }],
+        ref: 'User',
+        required: true
+    },
     comments: [{
         type: 'ObjectId',
         ref: 'Comment'
