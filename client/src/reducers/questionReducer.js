@@ -1,6 +1,7 @@
 import {
     GET_ALL_QUESTIONS,
-    GET_ONE_QUESTION
+    GET_ONE_QUESTION,
+    CREATE_COMMENT
 } from '../actionTypes/questionTypes';
 
 const initialState = {
@@ -19,6 +20,14 @@ const questionReducer = (state = initialState, action) => {
             return {
                 ...state,
                 question: action.payload
+            }
+        case CREATE_COMMENT:
+            return {
+                ...state,
+                question: {
+                    ...state.question,
+                    comments: [action.payload, ...state.question.comments]
+                }
             }
         default:
             return state;

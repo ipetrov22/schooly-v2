@@ -1,6 +1,7 @@
 import {
     GET_ALL_QUESTIONS,
-    GET_ONE_QUESTION
+    GET_ONE_QUESTION,
+    CREATE_COMMENT
 } from '../actionTypes/questionTypes';
 
 import {
@@ -9,6 +10,10 @@ import {
     getOneQuestionRequest
 } from '../services/questionService';
 
+import {
+    createCommentRequest
+} from '../services/commentService';
+
 export const getAllQuestionsSuccess = (payload) => ({
     type: GET_ALL_QUESTIONS,
     payload
@@ -16,6 +21,11 @@ export const getAllQuestionsSuccess = (payload) => ({
 
 export const getOneQuestionSuccess = (payload) => ({
     type: GET_ONE_QUESTION,
+    payload
+});
+
+export const createCommentSuccess = (payload) => ({
+    type: CREATE_COMMENT,
     payload
 });
 
@@ -55,6 +65,20 @@ export const getOneQuestion = (questionId, idToken) => async (dispatch) => {
         }
 
         dispatch(getOneQuestionSuccess(response));
+    } catch (error) {
+        alert(error);
+    }
+};
+
+export const createComment = (data) => async (dispatch) => {
+    try {
+        const response = await createCommentRequest(data, idToken);
+
+        if (response.error) {
+            throw response.error.message;
+        }
+
+        dispatch(createCommentSuccess(response));
     } catch (error) {
         alert(error);
     }
