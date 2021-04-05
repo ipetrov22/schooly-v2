@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getOneQuestion } from '../../actions/questionActions';
+import { getOneQuestion, clearQuestion } from '../../actions/questionActions';
 import transformDate from '../../helpers/transformDate';
 import CommentsSection from './CommentsSection';
+import { useClean } from '../../hooks';
 import './QuestionDetails.scss';
 
-const QuestionDetails = ({ firebaseUser, question, getOneQuestion, match }) => {
+const QuestionDetails = ({ firebaseUser, question, getOneQuestion, clearQuestion, match }) => {
+    useClean(clearQuestion);
+
     useEffect(() => {
         if (firebaseUser && firebaseUser !== true) {
             const { questionId } = match.params;
@@ -45,7 +48,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getOneQuestion
+    getOneQuestion,
+    clearQuestion
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionDetails);

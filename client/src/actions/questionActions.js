@@ -1,7 +1,8 @@
 import {
     GET_ALL_QUESTIONS,
     GET_ONE_QUESTION,
-    CREATE_COMMENT
+    CREATE_COMMENT,
+    CLEAR_QUESTION
 } from '../actionTypes/questionTypes';
 
 import {
@@ -27,6 +28,10 @@ export const getOneQuestionSuccess = (payload) => ({
 export const createCommentSuccess = (payload) => ({
     type: CREATE_COMMENT,
     payload
+});
+
+export const clearQuestion = () => ({
+    type: CLEAR_QUESTION
 });
 
 export const createQuestion = (data, idToken) => async () => {
