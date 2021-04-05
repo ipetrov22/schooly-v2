@@ -39,7 +39,7 @@ export const register = ({ username, email, password }) => async (dispatch) => {
             throw data.error.message;
         }
 
-        dispatch(login({ email, password }));
+        await dispatch(login({ email, password }));
     } catch (error) {
         throw error;
     }

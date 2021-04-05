@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { MdLock } from 'react-icons/md';
 import userValidators from '../../../helpers/userValidators';
 import { connect } from 'react-redux';
 import { register } from '../../../actions/userActions';
+import { NotificationContext } from '../../../contexts/NotificationContext';
 import '../Form.scss';
 
 const RegisterForm = ({ register }) => {
+    const { setNotification } = useContext(NotificationContext);
     const history = useHistory();
 
     const [formData, setFormData] = useState({
@@ -49,8 +51,9 @@ const RegisterForm = ({ register }) => {
             try {
                 await register(formData);
                 history.push('/');
+                setNotification({ message: 'Registration successful!', type: 'success' });
             } catch (error) {
-                alert(error);
+                setNotification({ message: error, type: 'error' });
             }
         }
     };
