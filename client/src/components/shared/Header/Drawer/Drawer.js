@@ -2,7 +2,7 @@ import { FaUserAlt } from 'react-icons/fa';
 import { IoMdExit } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../../../actions/userActions';
+import { logout } from '../../../../actions/userActions';
 import './Drawer.scss';
 
 const Drawer = ({ open, setOpen, logout }) => {
