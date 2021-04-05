@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getOneQuestion } from '../../actions/questionActions';
 import transformDate from '../../helpers/transformDate';
-import CommentsSection from '../CommentsSection';
+import CommentsSection from './CommentsSection';
 import './QuestionDetails.scss';
 
 const QuestionDetails = ({ firebaseUser, question, getOneQuestion, match }) => {
@@ -25,7 +25,9 @@ const QuestionDetails = ({ firebaseUser, question, getOneQuestion, match }) => {
             <h1 className="title">{question.title}</h1>
 
             <p className="date-author">
-                <span className="date">{transformDate(question.date)}</span> by <span className="author">user1234</span>
+                <span className="date">
+                    {transformDate(question.date)}
+                </span> by <span className="author">{question.author.username}</span>
             </p>
 
             <p className="description">

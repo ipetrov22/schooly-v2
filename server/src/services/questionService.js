@@ -51,7 +51,7 @@ const getAll = async () => {
 
 const getOne = async (questionId) => {
     try {
-        const question = await QuestionModel.findById(questionId).populate('comments');
+        const question = await QuestionModel.findById(questionId).populate(['comments', { path: 'author', select: 'username' }]);
         return question;
     } catch (error) {
         throw { message: error };
