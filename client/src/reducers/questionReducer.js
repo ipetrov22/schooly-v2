@@ -6,7 +6,16 @@ import {
 
 const initialState = {
     questions: [],
-    question: {}
+    question: {
+        _id: '',
+        author: {},
+        comments: [],
+        title: '',
+        subject: '',
+        grade: '',
+        description: '',
+        date: ''
+    }
 };
 
 const questionReducer = (state = initialState, action) => {

@@ -1,7 +1,8 @@
 import { FaUserCircle } from 'react-icons/fa';
+import transformDate from '../../../../../helpers/transformDate';
 import './CommentCard.scss';
 
-const CommentCard = () => {
+const CommentCard = ({ comment }) => {
     return (
         <article className="comment-card">
             <section className="icon-container">
@@ -9,16 +10,13 @@ const CommentCard = () => {
             </section>
 
             <section className="content-container">
-                <p className="author">user1234</p>
+                <p className="author">{comment.author.username}</p>
 
                 <p className="comment-content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim 
-                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
-                    aliquip ex ea commodo consequat.
+                    {comment.content}
                 </p>
 
-                <p className="date">27/03/2021, 14:10:59</p>
+                <p className="date">{transformDate(comment.date)}</p>
             </section>
         </article>
     );

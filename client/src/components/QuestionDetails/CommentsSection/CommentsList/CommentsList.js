@@ -1,14 +1,19 @@
+import { connect } from 'react-redux';
 import CommentCard from './CommentCard';
 import './CommentsList.scss';
 
-const CommentsList = () => {
+const CommentsList = ({ question }) => {
     return (
         <section className="comments-list-container">
-            <CommentCard/>
-            <CommentCard/>
-            <CommentCard/>
+            {
+                question.comments.map(x => <CommentCard key={x._id} comment={x} />)
+            }
         </section>
     );
 };
 
-export default CommentsList;
+const mapStateToProps = (state) => ({
+    question: state.question.question
+});
+
+export default connect(mapStateToProps, null)(CommentsList);
