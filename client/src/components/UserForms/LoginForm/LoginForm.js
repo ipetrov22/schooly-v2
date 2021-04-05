@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { MdLock } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { login } from '../../../actions/userActions';
+import { NotificationContext } from '../../../contexts/NotificationContext';
 import '../Form.scss';
 
 const LoginForm = ({ login }) => {
+    const { setNotification } = useContext(NotificationContext);
     const history = useHistory();
     const [formData, setFormData] = useState({
         email: '',
@@ -27,9 +29,10 @@ const LoginForm = ({ login }) => {
         if (formData.email !== '' && formData.password !== '') {
             try {
                 await login(formData);
+                setNotification({message: 'Login successful!', type: 'success'});
                 history.push('/');
             } catch (error) {
-                alert('Invalid credentials!');
+                setNotification({message: 'Invalid credentials!', type: 'error'});
             }
         }
     }
