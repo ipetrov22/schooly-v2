@@ -1,12 +1,9 @@
 import QuestionDetails from '../components/QuestionDetails';
-import CommentsSection from '../components/CommentsSection';
 
-const Question = () => {
+const Question = (props) => {
     return (
         <div className="question-page">
-            <QuestionDetails />
-
-            <CommentsSection />
+            <QuestionDetails {...props} />
         </div>
     );
 };

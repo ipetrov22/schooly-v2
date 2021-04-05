@@ -1,28 +1,49 @@
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getOneQuestion } from '../../actions/questionActions';
+import transformDate from '../../helpers/transformDate';
+import CommentsSection from '../CommentsSection';
 import './QuestionDetails.scss';
 
-const QuestionDetails = () => {
+const QuestionDetails = ({ firebaseUser, question, getOneQuestion, match }) => {
+    useEffect(() => {
+        if (firebaseUser && firebaseUser !== true) {
+            const { questionId } = match.params;
+
+            firebaseUser.getIdToken()
+                .then(async (idToken) => await getOneQuestion(questionId, idToken))
+                .catch(console.log);
+        }
+    }, [firebaseUser, getOneQuestion, match.params]);
+
     return (
-        <div className="question-details-wrapper">
+        question.title ? <div className="question-details-wrapper">
             <p className="subject-grade">
-                <span className="subject">Math</span> - <span className="grade">10 Grade</span>
+                <span className="subject">{question.subject}</span> - <span className="grade">{question.grade} Grade</span>
             </p>
 
-            <h1 className="title">I need help with this that and something else</h1>
+            <h1 className="title">{question.title}</h1>
 
             <p className="date-author">
-                <span className="date">26 Mar 2021</span> by <span className="author">user1234</span>
+                <span className="date">{transformDate(question.date)}</span> by <span className="author">user1234</span>
             </p>
 
             <p className="description">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
+                {question.description}
             </p>
-        </div>
+
+            <CommentsSection />
+        </div> : null
     );
 };
 
-export default QuestionDetails;
+const mapStateToProps = (state) => ({
+    firebaseUser: state.user.firebaseUser,
+    question: state.question.question
+});
+
+const mapDispatchToProps = {
+    getOneQuestion
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionDetails);

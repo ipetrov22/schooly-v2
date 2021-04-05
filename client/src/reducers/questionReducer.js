@@ -1,9 +1,11 @@
 import {
-    GET_ALL_QUESTIONS
+    GET_ALL_QUESTIONS,
+    GET_ONE_QUESTION
 } from '../actionTypes/questionTypes';
 
 const initialState = {
-    questions: []
+    questions: [],
+    question: {}
 };
 
 const questionReducer = (state = initialState, action) => {
@@ -12,6 +14,11 @@ const questionReducer = (state = initialState, action) => {
             return {
                 ...state,
                 questions: action.payload
+            }
+        case GET_ONE_QUESTION:
+            return {
+                ...state,
+                question: action.payload
             }
         default:
             return state;

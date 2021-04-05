@@ -9,6 +9,6 @@ export const getAllQuestionsRequest = () => {
     return requester.get(`${SERVER_ADDRESS}/question`);
 };
 
-export const getOneQuestion = (questionId, idToken) => {
+export const getOneQuestionRequest = (questionId, idToken) => {
     return requester.get(`${SERVER_ADDRESS}/question/${questionId}`, null, idToken);
 };

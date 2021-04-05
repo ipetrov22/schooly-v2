@@ -1,1 +1,2 @@
 export const GET_ALL_QUESTIONS = 'GET_ALL_QUESTIONS';
+export const GET_ONE_QUESTION = 'GET_ONE_QUESTION';

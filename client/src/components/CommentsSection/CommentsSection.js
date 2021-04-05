@@ -2,7 +2,7 @@ import CreateComment from './CreateComment';
 import CommentsList from './CommentsList';
 import './CommentsSection.scss';
 
-const CommentSection = () => {
+const CommentsSection = () => {
 
     return (
         <div className="comment-section-wrapper">
@@ -15,4 +15,4 @@ const CommentSection = () => {
     );
 };
 
-export default CommentSection;
+export default CommentsSection;

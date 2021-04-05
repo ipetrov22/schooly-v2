@@ -22,7 +22,7 @@ const App = ({ verifyAuth }) => {
               <PublicRoute restricted={false} path="/" exact component={pages.Home} />
               <PublicRoute restricted={true} path="/login" component={pages.Login} />
               <PublicRoute restricted={true} path="/register" component={pages.Register} />
-              <PrivateRoute path="/question" component={pages.Question} />
+              <PrivateRoute path="/question/:questionId" component={pages.Question} />
               <PrivateRoute path="/ask" component={pages.Ask} />
             </Switch>
           </MainLayout>
