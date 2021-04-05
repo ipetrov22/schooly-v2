@@ -3,13 +3,17 @@ import { IoMdExit } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../../../../actions/userActions';
+import { useContext } from 'react';
+import { NotificationContext } from '../../../../contexts/NotificationContext';
 import './Drawer.scss';
 
 const Drawer = ({ open, setOpen, logout }) => {
+    const { setNotification } = useContext(NotificationContext);
 
     const onLogout = async () => {
         setOpen(false);
         await logout();
+        setNotification({ message: 'Logout successful!', type: 'success' });
     };
 
     return (
@@ -25,7 +29,7 @@ const Drawer = ({ open, setOpen, logout }) => {
 
             <section className="drawer-section">
                 <button className="drawer-link-btn" onClick={onLogout}>
-                    <IoMdExit size="20px"/>
+                    <IoMdExit size="20px" />
                     <span className="link-name">Logout</span>
                 </button>
             </section>
