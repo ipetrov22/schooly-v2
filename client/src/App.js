@@ -6,7 +6,7 @@ import PublicRoute from './hoc/PublicRoute';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { verifyAuth } from './actions/userActions';
-import { NotificationProvider } from './contexts/notificationContext';
+import { NotificationProvider } from './contexts/NotificationContext';
 import Notification from './components/shared/Notification';
 import './App.scss';
 

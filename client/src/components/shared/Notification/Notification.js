@@ -1,12 +1,20 @@
 import { IoMdClose } from 'react-icons/io';
+import { NotificationContext } from '../../../contexts/NotificationContext';
+import { useContext } from 'react';
 import './Notification.scss';
 
 const Notification = () => {
-    return (
-        <div className="notification-container error">
-            <p className="message">Some notification message longer tho</p>
+    const { notification, setNotification } = useContext(NotificationContext);
 
-            <button className="close-btn">
+    const onClose = () => {
+        setNotification({ message: '', type: '' });
+    };
+
+    return (
+        <div className={`notification-container ${notification.type}`}>
+            <p className="message">{notification.message}</p>
+
+            <button className="close-btn" onClick={onClose}>
                 <IoMdClose size="22px" fill="#fff" />
             </button>
         </div>
