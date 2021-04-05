@@ -16,7 +16,7 @@ const create = async ({ content, questionId }, author) => {
             }
         });
 
-        return comment;
+        return await comment.populate({ path: 'author', select: 'username' }).execPopulate();
     } catch (error) {
         throw { message: error };
     }

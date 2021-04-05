@@ -70,7 +70,7 @@ export const getOneQuestion = (questionId, idToken) => async (dispatch) => {
     }
 };
 
-export const createComment = (data) => async (dispatch) => {
+export const createComment = (data, idToken) => async (dispatch) => {
     try {
         const response = await createCommentRequest(data, idToken);
 
@@ -80,6 +80,6 @@ export const createComment = (data) => async (dispatch) => {
 
         dispatch(createCommentSuccess(response));
     } catch (error) {
-        alert(error);
+        throw error;
     }
 };
