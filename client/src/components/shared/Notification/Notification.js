@@ -1,10 +1,18 @@
 import { IoMdClose } from 'react-icons/io';
 import { NotificationContext } from '../../../contexts/NotificationContext';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import './Notification.scss';
 
 const Notification = () => {
     const { notification, setNotification } = useContext(NotificationContext);
+
+    useEffect(() => {
+        if (notification.type) {
+            setTimeout(() => {
+                setNotification({ message: '', type: '' });
+            }, 6000);
+        }
+    }, [notification, setNotification]);
 
     const onClose = () => {
         setNotification({ message: '', type: '' });
