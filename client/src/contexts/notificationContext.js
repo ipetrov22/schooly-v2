@@ -5,8 +5,8 @@ export const NotificationProvider = ({ children }) => {
     const [notification, setNotification] = useState({message: '', type: ''});
 
     return (
-        <SearchContext.Provider value={{ notification, setNotification }}>
+        <NotificationContext.Provider value={{ notification, setNotification }}>
             {children}
-        </SearchContext.Provider>
+        </NotificationContext.Provider>
     );
 };
