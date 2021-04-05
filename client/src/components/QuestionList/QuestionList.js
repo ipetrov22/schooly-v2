@@ -1,18 +1,31 @@
+import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { getAllQuestions } from '../../actions/questionActions';
 import QuestionCard from './QuestionCard';
 import './QuestionList.scss';
 
-const QuestionList = () => {
+const QuestionList = ({ firebaseUser, questions, getAllQuestions }) => {
+
+    useEffect(() => {
+        (async () => {
+            await getAllQuestions();
+        })();
+    }, [getAllQuestions]);
+
     return (
         <div className="question-list">
-            <QuestionCard/>
-            <QuestionCard/>
-            <QuestionCard/>
-            <QuestionCard/>
-            <QuestionCard/>
-            <QuestionCard/>
-            <QuestionCard/>
+            {questions.map(x => <QuestionCard key={x._id} question={x} isLoggedIn={!!firebaseUser} />)}
         </div>
     );
 };
 
-export default QuestionList;
+const mapStateToProps = (state) => ({
+    firebaseUser: state.user.firebaseUser,
+    questions: state.question.questions
+});
+
+const mapDispatchToProps = {
+    getAllQuestions
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionList);
