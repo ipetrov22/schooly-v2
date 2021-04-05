@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:questionId', verifyIdToken, (req, res) => {
+router.get('/:questionId', verifyIdToken, async (req, res) => {
     const { questionId } = req.params;
     try {
         const response = await questionService.getOne(questionId);

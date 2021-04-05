@@ -8,3 +8,7 @@ export const createQuestionRequest = (data, idToken) => {
 export const getAllQuestionsRequest = () => {
     return requester.get(`${SERVER_ADDRESS}/question`);
 };
+
+export const getOneQuestion = (questionId, idToken) => {
+    return requester.get(`${SERVER_ADDRESS}/question/${questionId}`, null, idToken);
+};
