@@ -1,17 +1,42 @@
 .notification-container {
-    max-width: 300px;
+    min-width: 280px;
     height: 48px;
-
-    left: 8px;
-    right: 8px;
+    left: 50%;
     bottom: 8px;
+    transform: translateX(-50%);
     display: flex;
     z-index: 1400;
     position: fixed;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding: 6px 16px;
 
     box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14),
         0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+
+    border-radius: 8px;
+
+    &.success {
+        background: #4caf50;
+    }
+
+    .message {
+        text-align: center;
+        font-size: 0.95rem;
+        font-weight: 400;
+        line-height: 1.43;
+        letter-spacing: 0.01071em;
+        color: white;
+        margin-right: 8px;
+    }
+
+    .close-btn {
+        height: 22px;
+        border-radius: 50%;
+        transition: 0.3s;
+        
+        &:hover {
+            background: rgba(0, 0, 0, 0.09);
+        }
+    }
 }
