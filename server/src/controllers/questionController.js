@@ -13,4 +13,13 @@ router.post('/', verifyIdToken, async (req, res) => {
     }
 });
 
+router.get('/', async (req, res) => {
+    try {
+        const response = await questionService.getAll();
+        return res.json(response);
+    } catch (error) {
+        return res.status(400).json({ error });
+    }
+});
+
 module.exports = router;

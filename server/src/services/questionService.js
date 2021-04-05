@@ -39,6 +39,16 @@ const create = async ({ title, subject, grade, description }, userId) => {
     }
 };
 
+const getAll = async () => {
+    try {
+        const questions = await QuestionModel.find().populate('comments');
+        return questions;
+    } catch (error) {
+        throw { message: error };
+    }
+};
+
 module.exports = {
-    create
+    create,
+    getAll
 };
