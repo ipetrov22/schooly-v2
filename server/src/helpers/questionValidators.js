@@ -19,7 +19,7 @@ const subjects = [
 ];
 
 const title = (title) => {
-    if (title.length < 10 || title.length > 30) {
+    if (title.length < 10 || title.length > 50) {
         return 'Title must be between 10 and 50 characters long.';
     }
 };

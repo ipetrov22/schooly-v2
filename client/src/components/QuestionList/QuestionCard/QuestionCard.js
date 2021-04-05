@@ -1,19 +1,20 @@
 import { Link } from 'react-router-dom';
+import subjects from '../../../dictionaries/subjects';
 import './QuestionCard.scss';
 
-const QuestionCard = () => {
+const QuestionCard = ({ question, isLoggedIn }) => {
     return (
         <article className="question-card">
             <section className="date-grade-container">
-                <span className="grade">10 Grade</span>
-                <span className="date">26 Mar 2021</span>
+                <span className="grade">{question.grade} Grade</span>
+                <span className="date">{new Date(question.date).toString().substring(4,21)}</span>
             </section>
 
-            <h2 className="subject">Math</h2>
+            <h2 className="subject">{subjects[question.subject]}</h2>
 
-            <p className="title">I need help with this and that and something else</p>
+            <p className="title">{question.title}</p>
 
-            <Link to="/question">
+            <Link to={`/question/${question._id}`}>
                 <button className="open-btn">Open</button>
             </Link>
         </article>
