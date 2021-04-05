@@ -3,7 +3,7 @@ import './Notification.scss';
 
 const Notification = () => {
     return (
-        <div className="notification-container success">
+        <div className="notification-container error">
             <p className="message">Some notification message longer tho</p>
 
             <button className="close-btn">
