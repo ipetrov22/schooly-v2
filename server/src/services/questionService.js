@@ -1,6 +1,5 @@
 const QuestionModel = require('../models/QuestionModel');
 const UserModel = require('../models/UserModel');
-require('../models/CommentModel');
 const questionValidators = require('../helpers/questionValidators');
 
 const create = async ({ title, subject, grade, description }, userId) => {
