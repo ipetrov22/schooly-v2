@@ -42,6 +42,7 @@ export const createQuestion = (data, idToken) => async () => {
             throw response.error.message;
         }
 
+        return response;
     } catch (error) {
         throw error;
     }

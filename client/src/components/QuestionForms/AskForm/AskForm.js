@@ -4,11 +4,13 @@ import grades from '../../../dictionaries/grades';
 import questionValidators from '../../../helpers/questionValidators';
 import { connect } from 'react-redux';
 import { createQuestion } from '../../../actions/questionActions';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { NotificationContext } from '../../../contexts/NotificationContext';
 import '../QuestionForm.scss';
 
 const AskForm = ({ firebaseUser, createQuestion }) => {
+    const { setNotification } = useContext(NotificationContext);
     const history = useHistory();
 
     const [formData, setFormData] = useState({
@@ -48,10 +50,10 @@ const AskForm = ({ firebaseUser, createQuestion }) => {
 
             firebaseUser.getIdToken()
                 .then(async (idToken) => {
-                    await createQuestion(formData, idToken);
-                    history.push('/');
+                    const questionId = await createQuestion(formData, idToken);
+                    history.push(`/question/${questionId}`);
                 })
-                .catch((err) => alert(err));
+                .catch((err) => setNotification({ message: err, type: 'error' }));
         }
     };
 
