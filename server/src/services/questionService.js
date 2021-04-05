@@ -60,5 +60,6 @@ const getOne = async (questionId) => {
 
 module.exports = {
     create,
-    getAll
+    getAll,
+    getOne
 };
