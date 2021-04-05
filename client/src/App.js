@@ -16,7 +16,7 @@ const App = ({ verifyAuth }) => {
   return (
     <Router>
       <Switch>
-        <Route path={['/', '/login', '/register', '/question', '/ask']} exact>
+        <Route path={['/', '/login', '/register', '/question/:id', '/ask']} exact>
           <MainLayout>
             <Switch>
               <PublicRoute restricted={false} path="/" exact component={pages.Home} />
