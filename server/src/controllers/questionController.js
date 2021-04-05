@@ -22,4 +22,14 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/:questionId', verifyIdToken, (req, res) => {
+    const { questionId } = req.params;
+    try {
+        const response = await questionService.getOne(questionId);
+        return res.json(response);
+    } catch (error) {
+        return res.status(400).json({ error });
+    }
+});
+
 module.exports = router;

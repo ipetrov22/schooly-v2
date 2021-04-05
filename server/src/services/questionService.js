@@ -42,8 +42,17 @@ const create = async ({ title, subject, grade, description }, userId) => {
 
 const getAll = async () => {
     try {
-        const questions = await QuestionModel.find().populate('comments');
+        const questions = await QuestionModel.find();
         return questions.reverse();
+    } catch (error) {
+        throw { message: error };
+    }
+};
+
+const getOne = async (questionId) => {
+    try {
+        const question = await QuestionModel.findById(questionId).populate('comments');
+        return question;
     } catch (error) {
         throw { message: error };
     }
