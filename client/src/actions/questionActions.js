@@ -10,7 +10,8 @@ import {
     createQuestionRequest,
     getAllQuestionsRequest,
     getOneQuestionRequest,
-    editQuestionRequest
+    editQuestionRequest,
+    deleteQuestionRequest
 } from '../services/questionService';
 
 import {
@@ -107,7 +108,18 @@ export const editQuestion = (data, questionId, idToken) => async (dispatch) => {
 
         dispatch(editQuestionSuccess(data));
     } catch (error) {
-        console.log(error);
+        throw error;
+    }
+};
+
+export const deleteQuestion = (questionId, idToken) => async () => {
+    try {
+        const response = await deleteQuestionRequest(questionId, idToken);
+
+        if(response.error) {
+            throw response.error.message;
+        }
+    } catch (error) {
         throw error;
     }
 };

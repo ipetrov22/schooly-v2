@@ -16,3 +16,7 @@ export const getOneQuestionRequest = (questionId, idToken) => {
 export const editQuestionRequest = (data, questionId, idToken) => {
     return requester.put(`${SERVER_ADDRESS}/question/${questionId}`, data, idToken);
 };
+
+export const deleteQuestionRequest = (questionId, idToken) => {
+    return requester.delete(`${SERVER_ADDRESS}/question/${questionId}`, null, idToken);
+};
