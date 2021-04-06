@@ -1,5 +1,6 @@
 const QuestionModel = require('../models/QuestionModel');
 const UserModel = require('../models/UserModel');
+const CommentModel = require('../models/CommentModel');
 const questionValidators = require('../helpers/questionValidators');
 
 const create = async ({ title, subject, grade, description }, userId) => {
@@ -113,12 +114,14 @@ const deleteOne = async (questionId, userId) => {
             throw 'This is not your question!';
         }
 
-        await QuestionModel.findByIdAndDelete(questionId);
+        const deletedQuestion = await QuestionModel.findByIdAndDelete(questionId);
         await UserModel.findByIdAndUpdate(userId, {
             $pull: {
                 askedQuestions: questionId
             }
         });
+
+        await CommentModel.deleteMany({ _id: { $in: deletedQuestion.comments } });
 
         return 'Success';
     } catch (error) {
