@@ -8,7 +8,7 @@ import { AiFillEdit } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
 import './QuestionDetails.scss';
 
-const QuestionDetails = ({ firebaseUser, question, getOneQuestion, clearQuestion, match }) => {
+const QuestionDetails = ({ firebaseUser, userId, question, getOneQuestion, clearQuestion, match }) => {
     useClean(clearQuestion);
 
     useEffect(() => {
@@ -25,8 +25,15 @@ const QuestionDetails = ({ firebaseUser, question, getOneQuestion, clearQuestion
         question.title ? <div className="question-details-wrapper">
 
             <section className="question-manage-container">
-                <button className="manage-btn"><AiFillEdit size="25px" fill="#3f51b5" /></button>
-                <button className="manage-btn"><MdDelete size="25px" fill="#ff0000" /></button>
+                {
+                    userId === question.author._id ?
+                        <>
+                            <button className="manage-btn"><AiFillEdit size="25px" fill="#3f51b5" /></button>
+                            <button className="manage-btn"><MdDelete size="25px" fill="#ff0000" /></button>
+                        </>
+                    :
+                        <button className="manage-btn">Favorite</button>
+                }
             </section>
 
             <p className="subject-grade">
@@ -52,6 +59,7 @@ const QuestionDetails = ({ firebaseUser, question, getOneQuestion, clearQuestion
 
 const mapStateToProps = (state) => ({
     firebaseUser: state.user.firebaseUser,
+    userId: state.user._id,
     question: state.question.question
 });
 
