@@ -3,7 +3,8 @@ import {
     GET_ONE_QUESTION,
     CREATE_COMMENT,
     CLEAR_QUESTION,
-    EDIT_QUESTION
+    EDIT_QUESTION,
+    CLEAR_ALL_QUESTIONS
 } from '../actionTypes/questionTypes';
 
 import {
@@ -40,6 +41,10 @@ export const clearQuestion = () => ({
 export const editQuestionSuccess = (payload) => ({
     type: EDIT_QUESTION,
     payload
+});
+
+export const clearAllQuestions = () => ({
+    type: CLEAR_ALL_QUESTIONS
 });
 
 export const createQuestion = (data, idToken) => async () => {
@@ -116,7 +121,7 @@ export const deleteQuestion = (questionId, idToken) => async () => {
     try {
         const response = await deleteQuestionRequest(questionId, idToken);
 
-        if(response.error) {
+        if (response.error) {
             throw response.error.message;
         }
     } catch (error) {

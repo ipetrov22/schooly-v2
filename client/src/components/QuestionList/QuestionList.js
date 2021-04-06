@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getAllQuestions } from '../../actions/questionActions';
+import { getAllQuestions, clearAllQuestions } from '../../actions/questionActions';
+import { useClean } from '../../hooks';
 import QuestionCard from './QuestionCard';
 import './QuestionList.scss';
 
-const QuestionList = ({ firebaseUser, questions, getAllQuestions }) => {
+const QuestionList = ({ firebaseUser, questions, getAllQuestions, clearAllQuestions }) => {
+    useClean(clearAllQuestions);
 
     useEffect(() => {
         (async () => {
@@ -25,7 +27,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-    getAllQuestions
+    getAllQuestions,
+    clearAllQuestions
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionList);
