@@ -98,7 +98,7 @@ const EditForm = ({ firebaseUser, userId, question, getOneQuestion, editQuestion
                         name="title"
                         placeholder="Title"
                         onChange={onFormChange}
-                        value={formData.title}
+                        defaultValue={question.title}
                     />
                     <label className={`input-label ${formErrors.title ? 'invalid-label' : ''}`}
                         htmlFor="title"
@@ -114,7 +114,7 @@ const EditForm = ({ firebaseUser, userId, question, getOneQuestion, editQuestion
                         className={`input-field ${formErrors.subject ? 'invalid-field' : ''}`}
                         placeholder="Subject"
                         onChange={onFormChange}
-                        value={formData.subject}
+                        defaultValue={question.subject}
                     >
                         <option className="option-field" defaultValue="">Select a subject</option>
                         {
@@ -140,7 +140,7 @@ const EditForm = ({ firebaseUser, userId, question, getOneQuestion, editQuestion
                         className={`input-field ${formErrors.grade ? 'invalid-field' : ''}`}
                         placeholder="Grade"
                         onChange={onFormChange}
-                        value={formData.grade}
+                        defaultValue={question.grade}
                     >
                         <option className="option-field" defaultValue="">Select grade</option>
                         {
@@ -167,7 +167,7 @@ const EditForm = ({ firebaseUser, userId, question, getOneQuestion, editQuestion
                         name="description"
                         placeholder="Description"
                         onChange={onFormChange}
-                        value={formData.description}
+                        defaultValue={question.description}
                     />
                     <label
                         className={`input-label ${formErrors.description ? 'invalid-label' : ''}`}
