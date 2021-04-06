@@ -25,8 +25,8 @@ const QuestionDetails = ({ firebaseUser, question, getOneQuestion, clearQuestion
         question.title ? <div className="question-details-wrapper">
 
             <section className="question-manage-container">
-                <button class="manage-btn"><AiFillEdit size="25px" fill="#3f51b5" /></button>
-                <button class="manage-btn"><MdDelete size="25px" fill="#ff0000" /></button>
+                <button className="manage-btn"><AiFillEdit size="25px" fill="#3f51b5" /></button>
+                <button className="manage-btn"><MdDelete size="25px" fill="#ff0000" /></button>
             </section>
 
             <p className="subject-grade">
