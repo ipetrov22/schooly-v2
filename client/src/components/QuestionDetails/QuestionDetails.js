@@ -4,6 +4,8 @@ import { getOneQuestion, clearQuestion } from '../../actions/questionActions';
 import transformDate from '../../helpers/transformDate';
 import CommentsSection from './CommentsSection';
 import { useClean } from '../../hooks';
+import { AiFillEdit } from 'react-icons/ai';
+import { MdDelete } from 'react-icons/md';
 import './QuestionDetails.scss';
 
 const QuestionDetails = ({ firebaseUser, question, getOneQuestion, clearQuestion, match }) => {
@@ -21,6 +23,12 @@ const QuestionDetails = ({ firebaseUser, question, getOneQuestion, clearQuestion
 
     return (
         question.title ? <div className="question-details-wrapper">
+
+            <section className="question-manage-container">
+                <button class="manage-btn"><AiFillEdit size="25px" fill="#3f51b5" /></button>
+                <button class="manage-btn"><MdDelete size="25px" fill="#ff0000" /></button>
+            </section>
+
             <p className="subject-grade">
                 <span className="subject">{question.subject}</span> - <span className="grade">{question.grade} Grade</span>
             </p>
