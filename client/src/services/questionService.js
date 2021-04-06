@@ -14,5 +14,5 @@ export const getOneQuestionRequest = (questionId, idToken) => {
 };
 
 export const editQuestionRequest = (data, questionId, idToken) => {
-    return requester.post(`${SERVER_ADDRESS}/question/edit/${questionId}`, data, idToken);
+    return requester.put(`${SERVER_ADDRESS}/question/${questionId}`, data, idToken);
 };

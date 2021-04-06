@@ -21,10 +21,10 @@ const EditForm = ({ firebaseUser, question, getOneQuestion, editQuestion, match 
     });
 
     const [formErrors, setFormErrors] = useState({
-        title: null,
-        subject: null,
-        grade: null,
-        description: null
+        title: '',
+        subject: '',
+        grade: '',
+        description: ''
     });
 
     useEffect(() => {
@@ -71,8 +71,8 @@ const EditForm = ({ firebaseUser, question, getOneQuestion, editQuestion, match 
 
             firebaseUser.getIdToken()
                 .then(async (idToken) => {
-                    const questionId = await editQuestion(formData, idToken);
-                    history.push(`/question/${questionId}`);
+                    await editQuestion(formData, question._id, idToken);
+                    history.push(`/question/${question._id}`);
                 })
                 .catch((err) => setNotification({ message: err, type: 'error' }));
         }
@@ -85,7 +85,7 @@ const EditForm = ({ firebaseUser, question, getOneQuestion, editQuestion, match 
                     <MdSchool size={'45px'} />
                 </article>
 
-                <h2 className="title">Ask a Question</h2>
+                <h2 className="title">Edit your question</h2>
 
                 <div className="form-control">
                     <input
@@ -175,7 +175,7 @@ const EditForm = ({ firebaseUser, question, getOneQuestion, editQuestion, match 
                 </div>
 
                 <button className="submit-btn" type="submit">
-                    Post your question
+                    Edit your question
                 </button>
             </form>
         </div>

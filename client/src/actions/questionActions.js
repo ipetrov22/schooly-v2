@@ -2,7 +2,8 @@ import {
     GET_ALL_QUESTIONS,
     GET_ONE_QUESTION,
     CREATE_COMMENT,
-    CLEAR_QUESTION
+    CLEAR_QUESTION,
+    EDIT_QUESTION
 } from '../actionTypes/questionTypes';
 
 import {
@@ -33,6 +34,11 @@ export const createCommentSuccess = (payload) => ({
 
 export const clearQuestion = () => ({
     type: CLEAR_QUESTION
+});
+
+export const editQuestionSuccess = (payload) => ({
+    type: EDIT_QUESTION,
+    payload
 });
 
 export const createQuestion = (data, idToken) => async () => {
@@ -99,8 +105,9 @@ export const editQuestion = (data, questionId, idToken) => async (dispatch) => {
             throw response.error.message;
         }
 
-
+        dispatch(editQuestionSuccess(data));
     } catch (error) {
+        console.log(error);
         throw error;
     }
 };
