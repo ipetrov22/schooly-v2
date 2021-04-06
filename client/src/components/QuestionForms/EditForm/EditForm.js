@@ -9,7 +9,7 @@ import { NotificationContext } from '../../../contexts/NotificationContext';
 import { getOneQuestion, editQuestion } from '../../../actions/questionActions';
 import '../QuestionForm.scss';
 
-const EditForm = ({ firebaseUser, question, getOneQuestion, editQuestion, match }) => {
+const EditForm = ({ firebaseUser, userId, question, getOneQuestion, editQuestion, match }) => {
     const { setNotification } = useContext(NotificationContext);
     const history = useHistory();
 
@@ -40,13 +40,17 @@ const EditForm = ({ firebaseUser, question, getOneQuestion, editQuestion, match 
     }, [firebaseUser, getOneQuestion, match.params]);
 
     useEffect(() => {
+        if (question._id && question.author._id !== userId) {
+            history.push(`/question/${question._id}`);
+        }
+
         setFormData({
             title: question.title,
             subject: question.subject,
             grade: question.grade,
             description: question.description
         });
-    }, [question]);
+    }, [question, history, userId]);
 
     const onFormChange = (e) => {
         const fieldName = e.target.name;
@@ -184,6 +188,7 @@ const EditForm = ({ firebaseUser, question, getOneQuestion, editQuestion, match 
 
 const mapStateToProps = (state) => ({
     firebaseUser: state.user.firebaseUser,
+    userId: state.user._id,
     question: state.question.question
 });
 
