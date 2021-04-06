@@ -63,8 +63,51 @@ const getOne = async (questionId) => {
     }
 };
 
+const edit = async ({ title, subject, grade, description }, questionId, userId) => {
+    const titleValidationResult = questionValidators.title(title);
+    if (titleValidationResult) {
+        throw { message: titleValidationResult };
+    }
+
+    const subjectValidationResult = questionValidators.subject(subject);
+    if (subjectValidationResult) {
+        throw { message: subjectValidationResult };
+    }
+
+    const gradeValidationResult = questionValidators.grade(grade);
+    if (gradeValidationResult) {
+        throw { message: gradeValidationResult };
+    }
+
+    const descriptionValidationResult = questionValidators.description(description);
+    if (descriptionValidationResult) {
+        throw { message: descriptionValidationResult };
+    }
+
+    try {
+        const user = await UserModel.findById(userId);
+
+        if(!user.askedQuestions.includes(questionId)){
+            throw 'This is not your question!';
+        }
+
+        await QuestionModel.findByIdAndUpdate(questionId, {
+            title,
+            subject,
+            grade,
+            description
+        });
+
+        return questionId;
+
+    } catch (error) {
+        throw { message: error };
+    }
+};
+
 module.exports = {
     create,
     getAll,
-    getOne
+    getOne,
+    edit
 };

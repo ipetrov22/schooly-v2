@@ -32,4 +32,14 @@ router.get('/:questionId', verifyIdToken, async (req, res) => {
     }
 });
 
+router.put('/:questionId', verifyIdToken, async (req, res) => {
+    const { questionId } = req.params;
+    try {
+        const response = await questionService.edit(req.body, questionId, res._id);
+        return res.json(response);
+    } catch (error) {
+        return res.status(400).json({ error });
+    }
+});
+
 module.exports = router;
