@@ -87,7 +87,7 @@ const edit = async ({ title, subject, grade, description }, questionId, userId) 
     try {
         const user = await UserModel.findById(userId);
 
-        if(!user.askedQuestions.includes(questionId)){
+        if (!user.askedQuestions.includes(questionId)) {
             throw 'This is not your question!';
         }
 
@@ -105,9 +105,31 @@ const edit = async ({ title, subject, grade, description }, questionId, userId) 
     }
 };
 
+const deleteOne = async (questionId, userId) => {
+    try {
+        const user = await UserModel.findById(userId);
+
+        if (!user.askedQuestions.includes(questionId)) {
+            throw 'This is not your question!';
+        }
+
+        await QuestionModel.findByIdAndDelete(questionId);
+        await UserModel.findByIdAndUpdate(userId, {
+            $pull: {
+                askedQuestions: questionId
+            }
+        });
+
+        return 'Success';
+    } catch (error) {
+        throw { message: error };
+    }
+};
+
 module.exports = {
     create,
     getAll,
     getOne,
-    edit
+    edit,
+    deleteOne
 };
