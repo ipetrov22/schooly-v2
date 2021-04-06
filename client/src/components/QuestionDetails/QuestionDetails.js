@@ -6,6 +6,7 @@ import CommentsSection from './CommentsSection';
 import { useClean } from '../../hooks';
 import { AiFillEdit } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import './QuestionDetails.scss';
 
 const QuestionDetails = ({ firebaseUser, userId, question, getOneQuestion, clearQuestion, match }) => {
@@ -28,10 +29,12 @@ const QuestionDetails = ({ firebaseUser, userId, question, getOneQuestion, clear
                 {
                     userId === question.author._id ?
                         <>
-                            <button className="manage-btn"><AiFillEdit size="25px" fill="#3f51b5" /></button>
+                            <Link to={`/question/edit/${question._id}`}>
+                                <button className="manage-btn"><AiFillEdit size="25px" fill="#3f51b5" /></button>
+                            </Link>
                             <button className="manage-btn"><MdDelete size="25px" fill="#ff0000" /></button>
                         </>
-                    :
+                        :
                         <button className="manage-btn">Favorite</button>
                 }
             </section>

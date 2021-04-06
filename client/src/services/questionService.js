@@ -12,3 +12,7 @@ export const getAllQuestionsRequest = () => {
 export const getOneQuestionRequest = (questionId, idToken) => {
     return requester.get(`${SERVER_ADDRESS}/question/${questionId}`, null, idToken);
 };
+
+export const editQuestionRequest = (data, questionId, idToken) => {
+    return requester.post(`${SERVER_ADDRESS}/question/edit/${questionId}`, data, idToken);
+};

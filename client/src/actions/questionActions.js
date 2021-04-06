@@ -8,7 +8,8 @@ import {
 import {
     createQuestionRequest,
     getAllQuestionsRequest,
-    getOneQuestionRequest
+    getOneQuestionRequest,
+    editQuestionRequest
 } from '../services/questionService';
 
 import {
@@ -85,6 +86,20 @@ export const createComment = (data, idToken) => async (dispatch) => {
         }
 
         dispatch(createCommentSuccess(response));
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const editQuestion = (data, questionId, idToken) => async (dispatch) => {
+    try {
+        const response = await editQuestionRequest(data, questionId, idToken);
+
+        if (response.error) {
+            throw response.error.message;
+        }
+
+
     } catch (error) {
         throw error;
     }

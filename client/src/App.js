@@ -21,12 +21,13 @@ const App = ({ verifyAuth }) => {
             
             <Router>
                 <Switch>
-                    <Route path={['/', '/login', '/register', '/question/:id', '/ask']} exact>
+                    <Route path={['/', '/login', '/register', '/question/:id', '/ask', '/question/edit/:questionId']} exact>
                         <MainLayout>
                             <Switch>
                                 <PublicRoute restricted={false} path="/" exact component={pages.Home} />
                                 <PublicRoute restricted={true} path="/login" component={pages.Login} />
                                 <PublicRoute restricted={true} path="/register" component={pages.Register} />
+                                <PrivateRoute path="/question/edit/:questionId" component={pages.EditQuestion} />
                                 <PrivateRoute path="/question/:questionId" component={pages.Question} />
                                 <PrivateRoute path="/ask" component={pages.Ask} />
                             </Switch>
