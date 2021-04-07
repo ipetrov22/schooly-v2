@@ -1,7 +1,8 @@
 import {
     USER_INIT,
     LOGIN,
-    FAVORITE_QUESTION
+    FAVORITE_QUESTION,
+    UNFAVORITE_QUESTION
 } from '../actionTypes/userTypes';
 
 const initialState = {
@@ -29,6 +30,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 favoriteQuestions: [...state.favoriteQuestions, action.payload]
+            }
+        case UNFAVORITE_QUESTION:
+            return {
+                ...state,
+                favoriteQuestion: state.favoriteQuestions.filter(x => x._id !== action.payload)
             }
         default:
             return state;

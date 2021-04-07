@@ -1,7 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { connect } from 'react-redux';
 import { getOneQuestion, clearQuestion, deleteQuestion } from '../../actions/questionActions';
-import { favoriteQuestion } from '../../actions/userActions';
+import { favoriteQuestion, unfavoriteQuestion } from '../../actions/userActions';
 import transformDate from '../../helpers/transformDate';
 import CommentsSection from './CommentsSection';
 import { useClean } from '../../hooks';
@@ -20,6 +20,7 @@ const QuestionDetails = ({
     clearQuestion,
     deleteQuestion,
     favoriteQuestion,
+    unfavoriteQuestion,
     match
 }) => {
     const { setNotification } = useContext(NotificationContext);
@@ -62,7 +63,13 @@ const QuestionDetails = ({
     };
 
     const onUnfavorite = () => {
-
+        if (firebaseUser) {
+            firebaseUser.getIdToken()
+                .then(async (idToken) => {
+                    await unfavoriteQuestion(question._id, idToken);
+                })
+                .catch((err) => setNotification({ message: err, type: 'error' }));
+        }
     };
 
     return (
@@ -123,7 +130,8 @@ const mapDispatchToProps = {
     getOneQuestion,
     clearQuestion,
     deleteQuestion,
-    favoriteQuestion
+    favoriteQuestion,
+    unfavoriteQuestion
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionDetails);

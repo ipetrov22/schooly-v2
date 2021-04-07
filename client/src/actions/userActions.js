@@ -1,13 +1,15 @@
 import {
     LOGIN,
     USER_INIT,
-    FAVORITE_QUESTION
+    FAVORITE_QUESTION,
+    UNFAVORITE_QUESTION
 } from '../actionTypes/userTypes';
 
 import {
     registerRequest,
     getOwnRequest,
-    favoriteQuestionRequest
+    favoriteQuestionRequest,
+    unfavoriteQuestionRequest
 } from '../services/userService';
 
 import firebase from '../utils/firebase';
@@ -23,6 +25,11 @@ export const loginSuccess = (userData) => ({
 
 export const favoriteQuestionSuccess = (payload) => ({
     type: FAVORITE_QUESTION,
+    payload
+});
+
+export const unfavoriteQuestionSuccess = (payload) => ({
+    type: UNFAVORITE_QUESTION,
     payload
 });
 
@@ -85,6 +92,20 @@ export const favoriteQuestion = (question, idToken) => async (dispatch) => {
         }
 
         dispatch(favoriteQuestionSuccess(question));
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const unfavoriteQuestion = (questionId, idToken) => async (dispatch) => {
+    try {
+        const response = await unfavoriteQuestionRequest(questionId, idToken);
+        console.log(response);
+        if (response.error) {
+            throw response.error.message;
+        }
+
+        dispatch(unfavoriteQuestionSuccess(questionId));
     } catch (error) {
         throw error;
     }

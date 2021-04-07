@@ -12,3 +12,7 @@ export const getOwnRequest = (idToken) => {
 export const favoriteQuestionRequest = (questionId, idToken) => {
     return requester.put(`${SERVER_ADDRESS}/user/favorite/${questionId}`, null, idToken);
 };
+
+export const unfavoriteQuestionRequest = (questionId, idToken) => {
+    return requester.put(`${SERVER_ADDRESS}/user/unfavorite/${questionId}`, null, idToken);
+};

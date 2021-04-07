@@ -52,10 +52,6 @@ const favoriteQuestion = async (questionId, userId) => {
     try {
         const user = await UserModel.findById(userId);
 
-        if (user.favoriteQuestions.includes(questionId)) {
-            throw 'This question is already marked as favorite.';
-        }
-
         if (user.askedQuestions.includes(questionId)) {
             throw 'You cannot favorite your own question.';
         }
@@ -80,6 +76,8 @@ const unfavoriteQuestion = async (questionId, userId) => {
                 favoriteQuestions: questionId
             }
         });
+
+        return 'Success';
     } catch (error) {
         throw {message: error};
     }
