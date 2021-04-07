@@ -48,7 +48,29 @@ const getOwn = async (userId) => {
     }
 };
 
+const favoriteQuestion = async (questionId, userId) => {
+    try {
+        const user = await UserModel.findById(userId);
+
+        if (user.askedQuestions.includes(questionId)) {
+            throw 'You cannot favorite your own question.';
+        }
+
+        await UserModel.findByIdAndUpdate(userId, {
+            $addToSet: {
+                favoriteQuestions: questionId
+            }
+        });
+
+        return 'Success';
+
+    } catch (error) {
+        throw { message: error };
+    }
+};
+
 module.exports = {
     createUser,
-    getOwn
+    getOwn,
+    favoriteQuestion
 };
