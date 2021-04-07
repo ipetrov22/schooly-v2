@@ -32,4 +32,14 @@ router.put('/favorite/:questionId', verifyIdToken, async (req, res) => {
     }
 });
 
+router.put('/unfavorite/:questionId', verifyIdToken, async (req, res) => {
+    const { questionId } = req.params;
+    try {
+        const response = await userService.unfavoriteQuestion(questionId, res._id);
+        return res.json(response);
+    } catch (error) {
+        return res.status(400).json({ error });
+    }
+});
+
 module.exports = router;

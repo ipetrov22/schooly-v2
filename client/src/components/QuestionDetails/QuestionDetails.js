@@ -61,6 +61,10 @@ const QuestionDetails = ({
         }
     };
 
+    const onUnfavorite = () => {
+
+    };
+
     return (
         question.title ? <div className="question-details-wrapper">
 
@@ -77,7 +81,7 @@ const QuestionDetails = ({
                         </>
                         : favoriteQuestions.some(x => x._id === question._id) ?
 
-                            <button className="manage-btn">
+                            <button className="manage-btn" onClick={onUnfavorite}>
                                 <MdFavorite size="25px" fill="#e31b1b" />
                             </button>
                             :

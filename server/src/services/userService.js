@@ -73,8 +73,21 @@ const favoriteQuestion = async (questionId, userId) => {
     }
 };
 
+const unfavoriteQuestion = async (questionId, userId) => {
+    try {
+        await UserModel.findByIdAndUpdate(userId, {
+            $pull: {
+                favoriteQuestions: questionId
+            }
+        });
+    } catch (error) {
+        throw {message: error};
+    }
+};
+
 module.exports = {
     createUser,
     getOwn,
-    favoriteQuestion
+    favoriteQuestion,
+    unfavoriteQuestion
 };
