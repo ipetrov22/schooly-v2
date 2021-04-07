@@ -24,9 +24,9 @@ const create = async ({ content, questionId }, author) => {
 
 const deleteOne = async ({ questionId }, commentId, userId) => {
     try {
-        const comment = await CommentModel.findById(comment);
+        const comment = await CommentModel.findById(commentId);
 
-        if (comment.author !== userId) {
+        if (comment.author.toString() !== userId) {
             throw 'This is not your comment!';
         }
 

@@ -1,12 +1,22 @@
 import { FaUserCircle } from 'react-icons/fa';
 import transformDate from '../../../../../helpers/transformDate';
 import { MdDelete } from 'react-icons/md';
+import { useContext } from 'react';
+import { NotificationContext } from '../../../../../contexts/NotificationContext';
 import './CommentCard.scss';
 
-const CommentCard = ({ comment, firebaseUser, userId }) => {
+const CommentCard = ({ comment, firebaseUser, userId, deleteComment, questionId }) => {
+    const { setNotification } = useContext(NotificationContext);
 
     const onDelete = () => {
-        console.log('onDelete');
+        if (firebaseUser) {
+            firebaseUser.getIdToken()
+                .then(async (idToken) => {
+                    await deleteComment({ questionId }, comment._id, idToken);
+                    setNotification({ message: 'Comment deleted.', type: 'success' });
+                })
+                .catch((err) => setNotification({ message: err, type: 'error' }));
+        }
     };
 
     return (

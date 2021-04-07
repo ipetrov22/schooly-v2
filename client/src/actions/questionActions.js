@@ -4,7 +4,8 @@ import {
     CREATE_COMMENT,
     CLEAR_QUESTION,
     EDIT_QUESTION,
-    CLEAR_ALL_QUESTIONS
+    CLEAR_ALL_QUESTIONS,
+    DELETE_COMMENT
 } from '../actionTypes/questionTypes';
 
 import {
@@ -16,7 +17,8 @@ import {
 } from '../services/questionService';
 
 import {
-    createCommentRequest
+    createCommentRequest,
+    deleteCommentRequest
 } from '../services/commentService';
 
 export const getAllQuestionsSuccess = (payload) => ({
@@ -45,6 +47,11 @@ export const editQuestionSuccess = (payload) => ({
 
 export const clearAllQuestions = () => ({
     type: CLEAR_ALL_QUESTIONS
+});
+
+export const deleteCommentSuccess = (payload) => ({
+    type: DELETE_COMMENT,
+    payload
 });
 
 export const createQuestion = (data, idToken) => async () => {
@@ -124,6 +131,20 @@ export const deleteQuestion = (questionId, idToken) => async () => {
         if (response.error) {
             throw response.error.message;
         }
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const deleteComment = (data, commentId, idToken) => async (dispatch) => {
+    try {
+        const response = await deleteCommentRequest(data, commentId, idToken);
+
+        if (response.error) {
+            throw response.error.message;
+        }
+
+        dispatch(deleteCommentSuccess(commentId));
     } catch (error) {
         throw error;
     }

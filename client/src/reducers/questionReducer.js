@@ -4,7 +4,8 @@ import {
     CREATE_COMMENT,
     CLEAR_QUESTION,
     EDIT_QUESTION,
-    CLEAR_ALL_QUESTIONS
+    CLEAR_ALL_QUESTIONS,
+    DELETE_COMMENT
 } from '../actionTypes/questionTypes';
 
 const initialState = {
@@ -58,6 +59,14 @@ const questionReducer = (state = initialState, action) => {
             return {
                 ...state,
                 questions: initialState.questions
+            }
+        case DELETE_COMMENT:
+            return {
+                ...state,
+                question: {
+                    ...state.question,
+                    comments: state.question.comments.filter(x => x._id !== action.payload)
+                }
             }
         default:
             return state;

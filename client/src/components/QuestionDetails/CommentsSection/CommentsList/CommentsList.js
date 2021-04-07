@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import CommentCard from './CommentCard';
+import { deleteComment } from '../../../../actions/questionActions';
 import './CommentsList.scss';
 
-const CommentsList = ({ question, firebaseUser, userId }) => {
+const CommentsList = ({ question, firebaseUser, userId, deleteComment }) => {
     return (
         <section className="comments-list-container">
             {
@@ -12,6 +13,8 @@ const CommentsList = ({ question, firebaseUser, userId }) => {
                         comment={x}
                         firebaseUser={firebaseUser}
                         userId={userId}
+                        deleteComment={deleteComment}
+                        questionId={question._id}
                     />
                 ))
             }
@@ -25,4 +28,8 @@ const mapStateToProps = (state) => ({
     userId: state.user._id
 });
 
-export default connect(mapStateToProps, null)(CommentsList);
+const mapDispatchToProps = {
+    deleteComment
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentsList);
