@@ -13,4 +13,14 @@ router.post('/', verifyIdToken, async (req, res) => {
     }
 });
 
+router.delete('/:commentId', verifyIdToken, async (req, res) => {
+    const { commentId } = req.params;
+    try {
+        const response = await commentService.deleteOne(req.body, commentId, res._id);
+        return res.json(response);
+    } catch (error) {
+        return res.status(400).json({ error });
+    }
+});
+
 module.exports = router;

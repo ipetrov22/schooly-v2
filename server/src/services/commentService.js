@@ -22,6 +22,29 @@ const create = async ({ content, questionId }, author) => {
     }
 };
 
+const deleteOne = async ({ questionId }, commentId, userId) => {
+    try {
+        const comment = await CommentModel.findById(comment);
+
+        if (comment.author !== userId) {
+            throw 'This is not your comment!';
+        }
+
+        await CommentModel.findByIdAndDelete(commentId);
+
+        await QuestionModel.findByIdAndUpdate(questionId, {
+            $pull: {
+                comments: commentId
+            }
+        });
+
+        return 'Success';
+    } catch (error) {
+        throw { message: error };
+    }
+};
+
 module.exports = {
-    create
+    create,
+    deleteOne
 };
