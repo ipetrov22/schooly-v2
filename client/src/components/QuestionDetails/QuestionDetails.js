@@ -13,6 +13,7 @@ import './QuestionDetails.scss';
 const QuestionDetails = ({
     firebaseUser,
     userId,
+    favoriteQuestions,
     question,
     getOneQuestion,
     clearQuestion,
@@ -62,11 +63,15 @@ const QuestionDetails = ({
                                 <MdDelete size="25px" fill="#ff0000" />
                             </button>
                         </>
-                        :
-                        <button className="manage-btn">
-                            <MdFavorite size="25px" fill="#e31b1b" />
-                            <MdFavoriteBorder size="25px" fill="#e31b1b" />
-                        </button>
+                        : favoriteQuestions.some(x => x._id === question._id) ?
+
+                            <button className="manage-btn">
+                                <MdFavorite size="25px" fill="#e31b1b" />
+                            </button>
+                            :
+                            <button className="manage-btn">
+                                <MdFavoriteBorder size="25px" fill="#e31b1b" />
+                            </button>
                 }
             </section>
 
@@ -94,6 +99,7 @@ const QuestionDetails = ({
 const mapStateToProps = (state) => ({
     firebaseUser: state.user.firebaseUser,
     userId: state.user._id,
+    favoriteQuestions: state.user.favoriteQuestions,
     question: state.question.question
 });
 
