@@ -1,4 +1,5 @@
 .comment-card {
+    position: relative;
     display: flex;
     gap: 16px;
 
@@ -8,6 +9,14 @@
         0px 1px 3px 0px rgba(0, 0, 0, 0.12);
     border-radius: 8px;
     background: #fff;
+
+    .comment-manage-container {
+        position:absolute;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        gap: 10px;
+    }
 
     .icon-container {
         margin-top: -2px;
