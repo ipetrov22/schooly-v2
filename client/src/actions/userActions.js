@@ -3,7 +3,8 @@ import {
     USER_INIT,
     FAVORITE_QUESTION,
     UNFAVORITE_QUESTION,
-    ADD_QUESTION_TO_ASKED
+    ADD_QUESTION_TO_ASKED,
+    REMOVE_QUESTION_FROM_ASKED
 } from '../actionTypes/userTypes';
 
 import {
@@ -36,6 +37,11 @@ export const unfavoriteQuestionSuccess = (payload) => ({
 
 export const addQuestionToAsked = (payload) => ({
     type: ADD_QUESTION_TO_ASKED,
+    payload
+});
+
+export const removeQuestionFromAsked = (payload) => ({
+    type: REMOVE_QUESTION_FROM_ASKED,
     payload
 });
 

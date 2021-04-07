@@ -3,7 +3,8 @@ import {
     LOGIN,
     FAVORITE_QUESTION,
     UNFAVORITE_QUESTION,
-    ADD_QUESTION_TO_ASKED
+    ADD_QUESTION_TO_ASKED,
+    REMOVE_QUESTION_FROM_ASKED
 } from '../actionTypes/userTypes';
 
 const initialState = {
@@ -41,6 +42,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 askedQuestions: [...state.askedQuestions, action.payload]
+            }
+        case REMOVE_QUESTION_FROM_ASKED:
+            return {
+                ...state,
+                askedQuestions: state.askedQuestions.filter(x => x._id !== action.payload)
             }
         default:
             return state;

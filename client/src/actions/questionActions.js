@@ -9,7 +9,8 @@ import {
 } from '../actionTypes/questionTypes';
 
 import {
-    addQuestionToAsked
+    addQuestionToAsked,
+    removeQuestionFromAsked
 } from '../actions/userActions';
 
 import {
@@ -129,13 +130,15 @@ export const editQuestion = (data, questionId, idToken) => async (dispatch) => {
     }
 };
 
-export const deleteQuestion = (questionId, idToken) => async () => {
+export const deleteQuestion = (questionId, idToken) => async (dispatch) => {
     try {
         const response = await deleteQuestionRequest(questionId, idToken);
 
         if (response.error) {
             throw response.error.message;
         }
+
+        dispatch(removeQuestionFromAsked(questionId));
     } catch (error) {
         throw error;
     }
