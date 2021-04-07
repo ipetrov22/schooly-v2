@@ -39,6 +39,16 @@ const createUser = async ({ username, email, password }) => {
         });
 };
 
+const getOwn = async (userId) => {
+    try {
+        const user = await UserModel.findById(userId).populate(['askedQuestions', 'favoriteQuestions']);
+        return user;
+    } catch (error) {
+        throw { message: error };
+    }
+};
+
 module.exports = {
-    createUser
+    createUser,
+    getOwn
 };

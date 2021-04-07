@@ -5,8 +5,11 @@ import {
 
 const initialState = {
     firebaseUser: JSON.parse(localStorage.getItem('isAuth')),
-    username: '',
     _id: '',
+    username: '',
+    email: '',
+    askedQuestions: [],
+    favoriteQuestions: []
 };
 
 const userReducer = (state = initialState, action) => {
@@ -19,9 +22,7 @@ const userReducer = (state = initialState, action) => {
         case LOGIN:
             return {
                 ...state,
-                firebaseUser: action.payload.firebaseUser,
-                username: action.payload.username,
-                _id: action.payload._id
+                ...action.payload
             }
         default:
             return state;

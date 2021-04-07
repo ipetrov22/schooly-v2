@@ -4,7 +4,8 @@ import {
 } from '../actionTypes/userTypes';
 
 import {
-    registerRequest
+    registerRequest,
+    getOwnRequest
 } from '../services/userService';
 
 import firebase from '../utils/firebase';
@@ -22,8 +23,11 @@ export const verifyAuth = () => (dispatch) => {
     firebase.auth().onAuthStateChanged(async (firebaseUser) => {
         if (firebaseUser) {
             localStorage.setItem('isAuth', true);
-            const { username, _id } = (await firebaseUser.getIdTokenResult(true)).claims;
-            dispatch(loginSuccess({ firebaseUser, username, _id }));
+
+            const idToken = await firebaseUser.getIdToken();
+            const user = await getOwnRequest(idToken);
+            //const { username, _id } = (await firebaseUser.getIdTokenResult(true)).claims;
+            dispatch(loginSuccess({ firebaseUser, ...user }));
         } else {
             localStorage.removeItem('isAuth');
             dispatch(init());
