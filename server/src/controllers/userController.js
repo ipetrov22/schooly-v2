@@ -23,6 +23,7 @@ router.get('/own', verifyIdToken, async (req, res) => {
 });
 
 router.put('/favorite/:questionId', verifyIdToken, async (req, res) => {
+    const { questionId } = req.params;
     try {
         const response = await userService.favoriteQuestion(questionId, res._id);
         return res.json(response);

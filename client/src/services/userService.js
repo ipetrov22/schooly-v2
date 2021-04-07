@@ -8,3 +8,7 @@ export const registerRequest = (data) => {
 export const getOwnRequest = (idToken) => {
     return requester.get(`${SERVER_ADDRESS}/user/own`, null, idToken);
 };
+
+export const favoriteQuestionRequest = (questionId, idToken) => {
+    return requester.put(`${SERVER_ADDRESS}/user/favorite/${questionId}`, null, idToken);
+};

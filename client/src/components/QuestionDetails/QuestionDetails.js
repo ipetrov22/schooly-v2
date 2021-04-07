@@ -1,6 +1,7 @@
 import { useEffect, useContext } from 'react';
 import { connect } from 'react-redux';
 import { getOneQuestion, clearQuestion, deleteQuestion } from '../../actions/questionActions';
+import { favoriteQuestion } from '../../actions/userActions';
 import transformDate from '../../helpers/transformDate';
 import CommentsSection from './CommentsSection';
 import { useClean } from '../../hooks';
@@ -18,6 +19,7 @@ const QuestionDetails = ({
     getOneQuestion,
     clearQuestion,
     deleteQuestion,
+    favoriteQuestion,
     match
 }) => {
     const { setNotification } = useContext(NotificationContext);
@@ -49,6 +51,16 @@ const QuestionDetails = ({
         }
     };
 
+    const onFavorite = () => {
+        if (firebaseUser) {
+            firebaseUser.getIdToken()
+                .then(async (idToken) => {
+                    await favoriteQuestion(question, idToken);
+                })
+                .catch((err) => setNotification({ message: err, type: 'error' }));
+        }
+    };
+
     return (
         question.title ? <div className="question-details-wrapper">
 
@@ -69,7 +81,7 @@ const QuestionDetails = ({
                                 <MdFavorite size="25px" fill="#e31b1b" />
                             </button>
                             :
-                            <button className="manage-btn">
+                            <button className="manage-btn" onClick={onFavorite}>
                                 <MdFavoriteBorder size="25px" fill="#e31b1b" />
                             </button>
                 }
@@ -106,7 +118,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
     getOneQuestion,
     clearQuestion,
-    deleteQuestion
+    deleteQuestion,
+    favoriteQuestion
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionDetails);

@@ -1,11 +1,13 @@
 import {
     LOGIN,
-    USER_INIT
+    USER_INIT,
+    FAVORITE_QUESTION
 } from '../actionTypes/userTypes';
 
 import {
     registerRequest,
-    getOwnRequest
+    getOwnRequest,
+    favoriteQuestionRequest
 } from '../services/userService';
 
 import firebase from '../utils/firebase';
@@ -19,6 +21,11 @@ export const loginSuccess = (userData) => ({
     payload: userData
 });
 
+export const favoriteQuestionSuccess = (payload) => ({
+    type: FAVORITE_QUESTION,
+    payload
+});
+
 export const verifyAuth = () => (dispatch) => {
     firebase.auth().onAuthStateChanged(async (firebaseUser) => {
         if (firebaseUser) {
@@ -26,7 +33,6 @@ export const verifyAuth = () => (dispatch) => {
 
             const idToken = await firebaseUser.getIdToken();
             const user = await getOwnRequest(idToken);
-            //const { username, _id } = (await firebaseUser.getIdTokenResult(true)).claims;
             dispatch(loginSuccess({ firebaseUser, ...user }));
         } else {
             localStorage.removeItem('isAuth');
@@ -67,5 +73,19 @@ export const logout = () => async (dispatch) => {
         dispatch(init());
     } catch (error) {
         alert(error);
+    }
+};
+
+export const favoriteQuestion = (question, idToken) => async (dispatch) => {
+    try {
+        const response = await favoriteQuestionRequest(question._id, idToken);
+
+        if (response.error) {
+            throw response.error.message;
+        }
+
+        dispatch(favoriteQuestionSuccess(question));
+    } catch (error) {
+        throw error;
     }
 };

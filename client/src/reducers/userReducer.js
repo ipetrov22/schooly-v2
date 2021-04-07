@@ -1,6 +1,7 @@
 import {
     USER_INIT,
-    LOGIN
+    LOGIN,
+    FAVORITE_QUESTION
 } from '../actionTypes/userTypes';
 
 const initialState = {
@@ -23,6 +24,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.payload
+            }
+        case FAVORITE_QUESTION:
+            return {
+                ...state,
+                favoriteQuestions: [...state.favoriteQuestions, action.payload]
             }
         default:
             return state;
