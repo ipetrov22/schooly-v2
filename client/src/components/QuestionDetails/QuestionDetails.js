@@ -5,7 +5,7 @@ import transformDate from '../../helpers/transformDate';
 import CommentsSection from './CommentsSection';
 import { useClean } from '../../hooks';
 import { AiFillEdit } from 'react-icons/ai';
-import { MdDelete } from 'react-icons/md';
+import { MdDelete, MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { Link, useHistory } from 'react-router-dom';
 import { NotificationContext } from '../../contexts/NotificationContext';
 import './QuestionDetails.scss';
@@ -63,7 +63,10 @@ const QuestionDetails = ({
                             </button>
                         </>
                         :
-                        <button className="manage-btn">Favorite</button>
+                        <button className="manage-btn">
+                            <MdFavorite size="25px" fill="#e31b1b" />
+                            <MdFavoriteBorder size="25px" fill="#e31b1b" />
+                        </button>
                 }
             </section>
 
