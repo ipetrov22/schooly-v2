@@ -11,11 +11,22 @@
     background: #fff;
 
     .comment-manage-container {
-        position:absolute;
+        position: absolute;
         top: 20px;
         right: 20px;
         display: flex;
         gap: 10px;
+
+        .manage-btn {
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+
+            transition: 0.3s;
+            &:hover {
+                background: rgba(0, 0, 0, 0.09);
+            }
+        }
     }
 
     .icon-container {
