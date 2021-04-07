@@ -34,7 +34,7 @@ const userReducer = (state = initialState, action) => {
         case UNFAVORITE_QUESTION:
             return {
                 ...state,
-                favoriteQuestion: state.favoriteQuestions.filter(x => x._id !== action.payload)
+                favoriteQuestions: state.favoriteQuestions.filter(x => x._id !== action.payload)
             }
         default:
             return state;

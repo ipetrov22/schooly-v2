@@ -100,7 +100,7 @@ export const favoriteQuestion = (question, idToken) => async (dispatch) => {
 export const unfavoriteQuestion = (questionId, idToken) => async (dispatch) => {
     try {
         const response = await unfavoriteQuestionRequest(questionId, idToken);
-        console.log(response);
+        
         if (response.error) {
             throw response.error.message;
         }
