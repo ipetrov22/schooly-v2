@@ -9,6 +9,10 @@ import {
 } from '../actionTypes/questionTypes';
 
 import {
+    addQuestionToAsked
+} from '../actions/userActions';
+
+import {
     createQuestionRequest,
     getAllQuestionsRequest,
     getOneQuestionRequest,
@@ -54,7 +58,7 @@ export const deleteCommentSuccess = (payload) => ({
     payload
 });
 
-export const createQuestion = (data, idToken) => async () => {
+export const createQuestion = (data, idToken) => async (dispatch) => {
     try {
         const response = await createQuestionRequest(data, idToken);
 
@@ -62,7 +66,8 @@ export const createQuestion = (data, idToken) => async () => {
             throw response.error.message;
         }
 
-        return response;
+        dispatch(addQuestionToAsked(response));
+        return response._id;
     } catch (error) {
         throw error;
     }

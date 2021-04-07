@@ -34,7 +34,7 @@ const create = async ({ title, subject, grade, description }, userId) => {
             }
         });
 
-        return question._id;
+        return question;
     } catch (error) {
         throw { message: error }
     }

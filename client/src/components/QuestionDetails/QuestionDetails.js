@@ -25,7 +25,7 @@ const QuestionDetails = ({
 }) => {
     const { setNotification } = useContext(NotificationContext);
     const history = useHistory();
-    console.log('render');
+    
     useClean(clearQuestion);
 
     useEffect(() => {

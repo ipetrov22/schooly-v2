@@ -2,7 +2,8 @@ import {
     LOGIN,
     USER_INIT,
     FAVORITE_QUESTION,
-    UNFAVORITE_QUESTION
+    UNFAVORITE_QUESTION,
+    ADD_QUESTION_TO_ASKED
 } from '../actionTypes/userTypes';
 
 import {
@@ -30,6 +31,11 @@ export const favoriteQuestionSuccess = (payload) => ({
 
 export const unfavoriteQuestionSuccess = (payload) => ({
     type: UNFAVORITE_QUESTION,
+    payload
+});
+
+export const addQuestionToAsked = (payload) => ({
+    type: ADD_QUESTION_TO_ASKED,
     payload
 });
 
@@ -100,7 +106,7 @@ export const favoriteQuestion = (question, idToken) => async (dispatch) => {
 export const unfavoriteQuestion = (questionId, idToken) => async (dispatch) => {
     try {
         const response = await unfavoriteQuestionRequest(questionId, idToken);
-        
+
         if (response.error) {
             throw response.error.message;
         }
