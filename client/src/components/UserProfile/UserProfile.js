@@ -1,5 +1,6 @@
 import UserInfo from './UserInfo/UserInfo';
 import './UserProfile.scss';
+import UserQuestions from './UserQuestions/UserQuestions';
 
 const UserProfile = () => {
     return (
@@ -7,6 +8,8 @@ const UserProfile = () => {
             <h1 className="title">Your Profile</h1>
 
             <UserInfo />
+
+            <UserQuestions />
         </div>
     );
 };
