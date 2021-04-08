@@ -18,10 +18,10 @@ const App = ({ verifyAuth }) => {
     return (
         <NotificationProvider>
             <Notification />
-            
+
             <Router>
                 <Switch>
-                    <Route path={['/', '/login', '/register', '/question/:id', '/ask', '/question/edit/:questionId']} exact>
+                    <Route path={['/', '/login', '/register', '/question/:id', '/ask', '/question/edit/:questionId', '/profile']} exact>
                         <MainLayout>
                             <Switch>
                                 <PublicRoute restricted={false} path="/" exact component={pages.Home} />
@@ -30,6 +30,7 @@ const App = ({ verifyAuth }) => {
                                 <PrivateRoute path="/question/edit/:questionId" component={pages.EditQuestion} />
                                 <PrivateRoute path="/question/:questionId" component={pages.Question} />
                                 <PrivateRoute path="/ask" component={pages.Ask} />
+                                <PrivateRoute path="/profile" exact component={pages.Profile} />
                             </Switch>
                         </MainLayout>
                     </Route>

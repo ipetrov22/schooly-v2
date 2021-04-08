@@ -4,6 +4,7 @@ import Register from './Register';
 import Question from './Question';
 import Ask from './Ask';
 import EditQuestion from './EditQuestion';
+import Profile from './Profile';
 
 const pages = {
     Home,
@@ -11,7 +12,8 @@ const pages = {
     Register,
     Question,
     Ask,
-    EditQuestion
+    EditQuestion,
+    Profile
 };
 
 export default pages;
