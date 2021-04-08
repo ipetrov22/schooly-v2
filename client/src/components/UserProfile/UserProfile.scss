@@ -1,0 +1,53 @@
+.user-profile-wrapper {
+    max-width: 1440px;
+    margin: auto;
+
+    .title {
+        max-width: 600px;
+        margin: auto;
+        margin-top: 80px;
+        text-align: center;
+
+        border-bottom: 1px solid black;
+        padding-bottom: 15px;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.87);
+        font-size: 3.75rem;
+        font-weight: 300;
+        line-height: 1.2;
+        letter-spacing: -0.00833em;
+    }
+
+    .user-profile-container {
+        max-width: 600px;
+        margin: auto;
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-around;
+
+        .user-profile-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-profile-info {
+            padding: 15px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .field-name {
+                color: rgba(0, 0, 0, 0.8);
+                font-size: 1.25rem;
+                font-weight: 500;
+                line-height: 1.334;
+                letter-spacing: 0em;
+
+                .field-value {
+                    font-weight: 400;
+                    font-style: italic;
+                }
+            }
+        }
+    }
+}
