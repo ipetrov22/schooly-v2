@@ -5,6 +5,18 @@
     display: flex;
     justify-content: space-around;
 
+    @media (max-width: 460px) {
+        flex-direction: column;
+        
+        .user-profile-icon{
+            justify-content: center;
+        }
+
+        .user-profile-info {
+            margin-left: 20px;
+        }
+    }
+
     .user-profile-icon {
         display: flex;
         align-items: center;
