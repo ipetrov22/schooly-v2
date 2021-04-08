@@ -19,8 +19,8 @@ const Drawer = ({ open, setOpen, logout }) => {
     return (
         <nav className={`drawer-container ${open ? 'open' : ''}`}>
             <section className="drawer-section">
-                <Link to="/">
-                    <button className="drawer-link-btn">
+                <Link to="/profile">
+                    <button className="drawer-link-btn" onClick={() => setOpen(false)}>
                         <FaUserAlt size="20px" />
                         <span className="link-name">Profile</span>
                     </button>
