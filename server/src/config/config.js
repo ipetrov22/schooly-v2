@@ -5,7 +5,10 @@ const config = {
         PORT: process.env.PORT || 3333,
         URI: 'mongodb+srv://admin:qwe123qwe@cluster0.5uonz.mongodb.net/Schooly?retryWrites=true&w=majority',
     },
-    production: {}
+    production: {
+        PORT: process.env.PORT,
+        URI: 'mongodb+srv://admin:qwe123qwe@cluster0.5uonz.mongodb.net/Schooly?retryWrites=true&w=majority'
+    }
 };
 
 module.exports = config[env];
