@@ -75,3 +75,21 @@ describe('password validator', () => {
         expect(result).toEqual('Password should be between 6 and 30 characters long and consist of numbers and latin letters.');
     });
 });
+
+describe('repeat password validator', () => {
+    test('should pass with same passwords', () => {
+        const password = 'qwe123';
+        const repeatPassword = 'qwe123';
+        const result = userValidators.repeatPassword(repeatPassword, password);
+
+        expect(result).toEqual('');
+    });
+
+    test('should throw with different passwords', () => {
+        const password = 'qwe123';
+        const repeatPassword = 'qwe1233';
+        const result = userValidators.repeatPassword(repeatPassword, password);
+
+        expect(result).toEqual('Passwords should match.');
+    });
+});
