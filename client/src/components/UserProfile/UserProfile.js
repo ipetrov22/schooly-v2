@@ -5,7 +5,7 @@ import UserQuestions from './UserQuestions/UserQuestions';
 const UserProfile = () => {
     return (
         <div className="user-profile-wrapper">
-            <h1 className="title">Your Profile</h1>
+            <h1 className="user-profile-title">Your Profile</h1>
 
             <UserInfo />
 

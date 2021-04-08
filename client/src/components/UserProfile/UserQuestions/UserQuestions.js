@@ -1,8 +1,9 @@
 import { useState } from 'react';
+import { connect } from 'react-redux';
 import QuestionCard from '../../QuestionList/QuestionCard';
 import './UserQuestions.scss';
 
-const UserQuestions = () => {
+const UserQuestions = ({ favoriteQuestions, askedQuestions }) => {
     const [questionCategory, setQuestionCategory] = useState('favorite');
 
     return (
@@ -22,10 +23,20 @@ const UserQuestions = () => {
             </section>
 
             <section className="user-questions-list">
-                
+                {
+                    questionCategory === 'favorite' ?
+                        favoriteQuestions.map(x => <QuestionCard key={x._id} question={x} isLoggedIn={true} />)
+                        :
+                        askedQuestions.map(x => <QuestionCard key={x._id} question={x} isLoggedIn={true} />)
+                }
             </section>
         </section>
     );
 };
 
-export default UserQuestions;
+const mapStateToProps = (state) => ({
+    favoriteQuestions: state.user.favoriteQuestions,
+    askedQuestions: state.user.askedQuestions
+});
+
+export default connect(mapStateToProps, null)(UserQuestions);
